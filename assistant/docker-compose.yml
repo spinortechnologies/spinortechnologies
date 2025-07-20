@@ -1,0 +1,17 @@
+
+services:
+  quant-ai:
+    build: .
+    container_name: quant-ai-assistant
+    volumes:
+      - ./knowledge_base:/app/knowledge_base
+      - /tmp/.X11-unix:/tmp/.X11-unix  # X11 socket for Linux GUI
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+    networks:
+      - quant-net
+
+networks:
+  quant-net:
+    driver: bridge
