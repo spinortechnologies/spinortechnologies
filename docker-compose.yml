@@ -1,0 +1,21 @@
+services:
+  spinor-web:
+    build: .
+    container_name: spinor-production
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    ports:
+      - "3000:3000"
+    networks:
+      - spinor-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+networks:
+  spinor-net:
+    driver: bridge
