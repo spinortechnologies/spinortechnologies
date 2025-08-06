@@ -1,0 +1,304 @@
+[
+  {
+    "title": "To Bubble or Not to Bubble: Asset Price Dynamics and Optimality in OLG Economies",
+    "authors": [
+      "Stefano Bosi",
+      "Cuong Le Van",
+      "Ngoc-Sang Pham"
+    ],
+    "abstract": "We study an overlapping generations (OLG) exchange economy with an asset that\nyields dividends. First, we derive general conditions, based on exogenous\nparameters, that give rise to three distinct scenarios: (1) only bubbleless\nequilibria exist, (2) a bubbleless equilibrium coexists with a continuum of\nbubbly equilibria, and (3) all equilibria are bubbly. Under stationary\nendowments and standard assumptions, we provide a complete characterization of\nthe equilibrium set and the associated asset price dynamics. In this setting, a\nbubbly equilibrium exists if and only if the interest rate in the economy\nwithout the asset is strictly lower than the population growth rate and the sum\nof per capita dividends is finite. Second, we establish necessary and\nsufficient conditions for Pareto optimality. Finally, we investigate the\nrelationship between asset price behaviors and the optimality of equilibria.",
+    "url": "http://arxiv.org/abs/2508.03230v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.03230v1",
+    "published": "2025-08-05T08:59:30+00:00",
+    "updated": "2025-08-05T08:59:30+00:00",
+    "categories": [
+      "q-fin.CP",
+      "q-fin.PR"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:26:50.971248"
+  },
+  {
+    "title": "Modeling Loss-Versus-Rebalancing in Automated Market Makers via Continuous-Installment Options",
+    "authors": [
+      "Srisht Fateh Singh",
+      "Reina Ke Xin Li",
+      "Samuel Gaskin",
+      "Yuntao Wu",
+      "Jeffrey Klinck",
+      "Panagiotis Michalopoulos",
+      "Zissis Poulos",
+      "Andreas Veneris"
+    ],
+    "abstract": "This paper mathematically models a constant-function automated market maker\n(CFAMM) position as a portfolio of exotic options, known as perpetual American\ncontinuous-installment (CI) options. This model replicates an AMM position's\ndelta at each point in time over an infinite time horizon, thus taking into\naccount the perpetual nature and optionality to withdraw of liquidity\nprovision. This framework yields two key theoretical results: (a) It proves\nthat the AMM's adverse-selection cost, loss-versus-rebalancing (LVR), is\nanalytically identical to the continuous funding fees (the time value decay or\ntheta) earned by the at-the-money CI option embedded in the replicating\nportfolio. (b) A special case of this model derives an AMM liquidity position's\ndelta profile and boundaries that suffer approximately constant LVR, up to a\nbounded residual error, over an arbitrarily long forward window. Finally, the\npaper describes how the constant volatility parameter required by the perpetual\noption can be calibrated from the term structure of implied volatilities and\nestimates the errors for both implied volatility calibration and LVR residual\nerror. Thus, this work provides a practical framework enabling liquidity\nproviders to choose an AMM liquidity profile and price boundaries for an\narbitrarily long, forward-looking time window where they can expect an\napproximately constant, price-independent LVR. The results establish a rigorous\noption-theoretic interpretation of AMMs and their LVR, and provide actionable\nguidance for liquidity providers in estimating future adverse-selection costs\nand optimizing position parameters.",
+    "url": "http://arxiv.org/abs/2508.02971v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.02971v1",
+    "published": "2025-08-05T00:30:24+00:00",
+    "updated": "2025-08-05T00:30:24+00:00",
+    "categories": [
+      "q-fin.MF",
+      "q-fin.PR",
+      "q-fin.TR"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:26:50.971292"
+  },
+  {
+    "title": "Interpretable Factors of Firm Characteristics",
+    "authors": [
+      "Yuxiao Jiao",
+      "Guofu Zhou",
+      "Wu Zhu",
+      "Yingzi Zhu"
+    ],
+    "abstract": "We develop a new framework for constructing factors from firm characteristics\nthat balances statistical efficiency and economic interpretability. Instead of\nusing all characteristics equally, our method groups related characteristics\nand derives one factor per group. The grouping combines economic intuition with\ndata-driven clustering. Applied to the IPCA model by Kelly et al. (2019), our\napproach yields economically meaningful factors that match or exceed standard\nIPCA in pricing performance. Using 94 characteristics from Gu et al. (2020), we\nshow that our parsimonious, transparent factors outperform benchmarks in\nout-of-sample tests, demonstrating the value of embedding economic structure\ninto statistical modeling.",
+    "url": "http://arxiv.org/abs/2508.02253v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.02253v1",
+    "published": "2025-08-04T09:55:19+00:00",
+    "updated": "2025-08-04T09:55:19+00:00",
+    "categories": [
+      "q-fin.PR"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:26:50.971327"
+  },
+  {
+    "title": "An Enhanced Focal Loss Function to Mitigate Class Imbalance in Auto Insurance Fraud Detection with Explainable AI",
+    "authors": [
+      "Francis Boabang",
+      "Samuel Asante Gyamerah"
+    ],
+    "abstract": "In insurance fraud prediction, handling class imbalance remains a critical\nchallenge. This paper presents a novel multistage focal loss function designed\nto enhance the performance of machine learning models in such imbalanced\nsettings by helping to escape local minima and converge to a good solution.\nBuilding upon the foundation of the standard focal loss, our proposed approach\nintroduces a dynamic, multi-stage convex and nonconvex mechanism that\nprogressively adjusts the focus on hard-to-classify samples across training\nepochs. This strategic refinement facilitates more stable learning and improved\ndiscrimination between fraudulent and legitimate cases. Through extensive\nexperimentation on a real-world insurance dataset, our method achieved better\nperformance than the traditional focal loss, as measured by accuracy,\nprecision, F1-score, recall and Area Under the Curve (AUC) metrics on the auto\ninsurance dataset. These results demonstrate the efficacy of the multistage\nfocal loss in boosting model robustness and predictive accuracy in highly\nskewed classification tasks, offering significant implications for fraud\ndetection systems in the insurance industry. An explainable model is included\nto interpret the results.",
+    "url": "http://arxiv.org/abs/2508.02283v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.02283v1",
+    "published": "2025-08-04T10:53:10+00:00",
+    "updated": "2025-08-04T10:53:10+00:00",
+    "categories": [
+      "cs.LG",
+      "q-fin.CP",
+      "q-fin.RM"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:26:54.000331"
+  },
+  {
+    "title": "Unravelling the Probabilistic Forest: Arbitrage in Prediction Markets",
+    "authors": [
+      "Oriol Saguillo",
+      "Vahid Ghafouri",
+      "Lucianna Kiffer",
+      "Guillermo Suarez-Tangil"
+    ],
+    "abstract": "Polymarket is a prediction market platform where users can speculate on\nfuture events by trading shares tied to specific outcomes, known as conditions.\nEach market is associated with a set of one or more such conditions. To ensure\nproper market resolution, the condition set must be exhaustive -- collectively\naccounting for all possible outcomes -- and mutually exclusive -- only one\ncondition may resolve as true. Thus, the collective prices of all related\noutcomes should be \\$1, representing a combined probability of 1 of any\noutcome. Despite this design, Polymarket exhibits cases where dependent assets\nare mispriced, allowing for purchasing (or selling) a certain outcome for less\nthan (or more than) \\$1, guaranteeing profit. This phenomenon, known as\narbitrage, could enable sophisticated participants to exploit such\ninconsistencies.\n  In this paper, we conduct an empirical arbitrage analysis on Polymarket data\nto answer three key questions: (Q1) What conditions give rise to arbitrage (Q2)\nDoes arbitrage actually occur on Polymarket and (Q3) Has anyone exploited these\nopportunities. A major challenge in analyzing arbitrage between related markets\nlies in the scalability of comparisons across a large number of markets and\nconditions, with a naive analysis requiring $O(2^{n+m})$ comparisons. To\novercome this, we employ a heuristic-driven reduction strategy based on\ntimeliness, topical similarity, and combinatorial relationships, further\nvalidated by expert input.\n  Our study reveals two distinct forms of arbitrage on Polymarket: Market\nRebalancing Arbitrage, which occurs within a single market or condition, and\nCombinatorial Arbitrage, which spans across multiple markets. We use on-chain\nhistorical order book data to analyze when these types of arbitrage\nopportunities have existed, and when they have been executed by users. We find\na realized estimate of 40 million USD of profit extracted.",
+    "url": "http://arxiv.org/abs/2508.03474v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.03474v1",
+    "published": "2025-08-05T14:06:50+00:00",
+    "updated": "2025-08-05T14:06:50+00:00",
+    "categories": [
+      "cs.CR",
+      "q-fin.TR"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:27:00.107498"
+  },
+  {
+    "title": "Measuring DEX Efficiency and The Effect of an Enhanced Routing Method on Both DEX Efficiency and Stakeholders' Benefits",
+    "authors": [
+      "Yu Zhang",
+      "Claudio J. Tessone"
+    ],
+    "abstract": "The efficiency of decentralized exchanges (DEXs) and the influence of token\nrouting algorithms on market performance and stakeholder outcomes remain\nunderexplored. This paper introduces the concept of Standardized Total\nArbitrage Profit (STAP), computed via convex optimization, as a systematic\nmeasure of DEX efficiency. We prove that executing the trade order maximizing\nSTAP and reintegrating the resulting transaction fees eliminates all arbitrage\nopportunities-both cyclic arbitrage within DEXs and between DEXs and\ncentralized exchanges (CEXs). In a fully efficient DEX (i.e., STAP = 0), the\nmonetary value of target tokens received must not exceed that of the source\ntokens, regardless of the routing algorithm. Any violation indicates arbitrage\npotential, making STAP a reliable metric for arbitrage detection. Using a token\ngraph comprising 11 tokens and 18 liquidity pools based on Uniswap V2 data, we\nobserve a decline in DEX efficiency between June 21 and November 8, 2024.\nSimulations comparing two routing algorithms-Yu Zhang et al.'s line-graph-based\nmethod and the depth-first search (DFS) algorithm-show that employing more\nprofitable routing improves DEX efficiency and trader returns over time.\nMoreover, while total value locked (TVL) remains stable with the line-graph\nmethod, it increases under the DFS algorithm, indicating greater aggregate\nbenefits for liquidity providers.",
+    "url": "http://arxiv.org/abs/2508.03217v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.03217v1",
+    "published": "2025-08-05T08:45:38+00:00",
+    "updated": "2025-08-05T08:45:38+00:00",
+    "categories": [
+      "q-fin.TR"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:27:00.107535"
+  },
+  {
+    "title": "Modeling Loss-Versus-Rebalancing in Automated Market Makers via Continuous-Installment Options",
+    "authors": [
+      "Srisht Fateh Singh",
+      "Reina Ke Xin Li",
+      "Samuel Gaskin",
+      "Yuntao Wu",
+      "Jeffrey Klinck",
+      "Panagiotis Michalopoulos",
+      "Zissis Poulos",
+      "Andreas Veneris"
+    ],
+    "abstract": "This paper mathematically models a constant-function automated market maker\n(CFAMM) position as a portfolio of exotic options, known as perpetual American\ncontinuous-installment (CI) options. This model replicates an AMM position's\ndelta at each point in time over an infinite time horizon, thus taking into\naccount the perpetual nature and optionality to withdraw of liquidity\nprovision. This framework yields two key theoretical results: (a) It proves\nthat the AMM's adverse-selection cost, loss-versus-rebalancing (LVR), is\nanalytically identical to the continuous funding fees (the time value decay or\ntheta) earned by the at-the-money CI option embedded in the replicating\nportfolio. (b) A special case of this model derives an AMM liquidity position's\ndelta profile and boundaries that suffer approximately constant LVR, up to a\nbounded residual error, over an arbitrarily long forward window. Finally, the\npaper describes how the constant volatility parameter required by the perpetual\noption can be calibrated from the term structure of implied volatilities and\nestimates the errors for both implied volatility calibration and LVR residual\nerror. Thus, this work provides a practical framework enabling liquidity\nproviders to choose an AMM liquidity profile and price boundaries for an\narbitrarily long, forward-looking time window where they can expect an\napproximately constant, price-independent LVR. The results establish a rigorous\noption-theoretic interpretation of AMMs and their LVR, and provide actionable\nguidance for liquidity providers in estimating future adverse-selection costs\nand optimizing position parameters.",
+    "url": "http://arxiv.org/abs/2508.02971v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.02971v1",
+    "published": "2025-08-05T00:30:24+00:00",
+    "updated": "2025-08-05T00:30:24+00:00",
+    "categories": [
+      "q-fin.MF",
+      "q-fin.PR",
+      "q-fin.TR"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:27:00.107565"
+  },
+  {
+    "title": "Language Model Guided Reinforcement Learning in Quantitative Trading",
+    "authors": [
+      "Adam Darmanin",
+      "Vince Vella"
+    ],
+    "abstract": "Algorithmic trading requires short-term decisions aligned with long-term\nfinancial goals. While reinforcement learning (RL) has been explored for such\ntactical decisions, its adoption remains limited by myopic behavior and opaque\npolicy rationale. In contrast, large language models (LLMs) have recently\ndemonstrated strategic reasoning and multi-modal financial signal\ninterpretation when guided by well-designed prompts.\n  We propose a hybrid system where LLMs generate high-level trading strategies\nto guide RL agents in their actions. We evaluate (i) the rationale of\nLLM-generated strategies via expert review, and (ii) the Sharpe Ratio (SR) and\nMaximum Drawdown (MDD) of LLM-guided agents versus unguided baselines. Results\nshow improved return and risk metrics over standard RL.",
+    "url": "http://arxiv.org/abs/2508.02366v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.02366v1",
+    "published": "2025-08-04T12:52:11+00:00",
+    "updated": "2025-08-04T12:52:11+00:00",
+    "categories": [
+      "cs.LG",
+      "cs.CL",
+      "q-fin.TR",
+      "I.2.7; I.2.6; J.4"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:27:00.107592"
+  },
+  {
+    "title": "ByteGen: A Tokenizer-Free Generative Model for Orderbook Events in Byte Space",
+    "authors": [
+      "Yang Li",
+      "Zhi Chen"
+    ],
+    "abstract": "Generative modeling of high-frequency limit order book (LOB) dynamics is a\ncritical yet unsolved challenge in quantitative finance, essential for robust\nmarket simulation and strategy backtesting. Existing approaches are often\nconstrained by simplifying stochastic assumptions or, in the case of modern\ndeep learning models like Transformers, rely on tokenization schemes that\naffect the high-precision, numerical nature of financial data through\ndiscretization and binning. To address these limitations, we introduce ByteGen,\na novel generative model that operates directly on the raw byte streams of LOB\nevents. Our approach treats the problem as an autoregressive next-byte\nprediction task, for which we design a compact and efficient 32-byte packed\nbinary format to represent market messages without information loss. The core\nnovelty of our work is the complete elimination of feature engineering and\ntokenization, enabling the model to learn market dynamics from its most\nfundamental representation. We achieve this by adapting the H-Net architecture,\na hybrid Mamba-Transformer model that uses a dynamic chunking mechanism to\ndiscover the inherent structure of market messages without predefined rules.\nOur primary contributions are: 1) the first end-to-end, byte-level framework\nfor LOB modeling; 2) an efficient packed data representation; and 3) a\ncomprehensive evaluation on high-frequency data. Trained on over 34 million\nevents from CME Bitcoin futures, ByteGen successfully reproduces key stylized\nfacts of financial markets, generating realistic price distributions,\nheavy-tailed returns, and bursty event timing. Our findings demonstrate that\nlearning directly from byte space is a promising and highly flexible paradigm\nfor modeling complex financial systems, achieving competitive performance on\nstandard market quality metrics without the biases of tokenization.",
+    "url": "http://arxiv.org/abs/2508.02247v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.02247v1",
+    "published": "2025-08-04T09:48:42+00:00",
+    "updated": "2025-08-04T09:48:42+00:00",
+    "categories": [
+      "q-fin.CP",
+      "cs.AI",
+      "cs.CE",
+      "cs.LG",
+      "q-fin.TR"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:27:00.107615"
+  },
+  {
+    "title": "Modeling Loss-Versus-Rebalancing in Automated Market Makers via Continuous-Installment Options",
+    "authors": [
+      "Srisht Fateh Singh",
+      "Reina Ke Xin Li",
+      "Samuel Gaskin",
+      "Yuntao Wu",
+      "Jeffrey Klinck",
+      "Panagiotis Michalopoulos",
+      "Zissis Poulos",
+      "Andreas Veneris"
+    ],
+    "abstract": "This paper mathematically models a constant-function automated market maker\n(CFAMM) position as a portfolio of exotic options, known as perpetual American\ncontinuous-installment (CI) options. This model replicates an AMM position's\ndelta at each point in time over an infinite time horizon, thus taking into\naccount the perpetual nature and optionality to withdraw of liquidity\nprovision. This framework yields two key theoretical results: (a) It proves\nthat the AMM's adverse-selection cost, loss-versus-rebalancing (LVR), is\nanalytically identical to the continuous funding fees (the time value decay or\ntheta) earned by the at-the-money CI option embedded in the replicating\nportfolio. (b) A special case of this model derives an AMM liquidity position's\ndelta profile and boundaries that suffer approximately constant LVR, up to a\nbounded residual error, over an arbitrarily long forward window. Finally, the\npaper describes how the constant volatility parameter required by the perpetual\noption can be calibrated from the term structure of implied volatilities and\nestimates the errors for both implied volatility calibration and LVR residual\nerror. Thus, this work provides a practical framework enabling liquidity\nproviders to choose an AMM liquidity profile and price boundaries for an\narbitrarily long, forward-looking time window where they can expect an\napproximately constant, price-independent LVR. The results establish a rigorous\noption-theoretic interpretation of AMMs and their LVR, and provide actionable\nguidance for liquidity providers in estimating future adverse-selection costs\nand optimizing position parameters.",
+    "url": "http://arxiv.org/abs/2508.02971v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.02971v1",
+    "published": "2025-08-05T00:30:24+00:00",
+    "updated": "2025-08-05T00:30:24+00:00",
+    "categories": [
+      "q-fin.MF",
+      "q-fin.PR",
+      "q-fin.TR"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:27:03.161410"
+  },
+  {
+    "title": "To Bubble or Not to Bubble: Asset Price Dynamics and Optimality in OLG Economies",
+    "authors": [
+      "Stefano Bosi",
+      "Cuong Le Van",
+      "Ngoc-Sang Pham"
+    ],
+    "abstract": "We study an overlapping generations (OLG) exchange economy with an asset that\nyields dividends. First, we derive general conditions, based on exogenous\nparameters, that give rise to three distinct scenarios: (1) only bubbleless\nequilibria exist, (2) a bubbleless equilibrium coexists with a continuum of\nbubbly equilibria, and (3) all equilibria are bubbly. Under stationary\nendowments and standard assumptions, we provide a complete characterization of\nthe equilibrium set and the associated asset price dynamics. In this setting, a\nbubbly equilibrium exists if and only if the interest rate in the economy\nwithout the asset is strictly lower than the population growth rate and the sum\nof per capita dividends is finite. Second, we establish necessary and\nsufficient conditions for Pareto optimality. Finally, we investigate the\nrelationship between asset price behaviors and the optimality of equilibria.",
+    "url": "http://arxiv.org/abs/2508.03230v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.03230v1",
+    "published": "2025-08-05T08:59:30+00:00",
+    "updated": "2025-08-05T08:59:30+00:00",
+    "categories": [
+      "q-fin.CP",
+      "q-fin.PR"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:27:06.188921"
+  },
+  {
+    "title": "Neural Network-Based Algorithmic Trading Systems: Multi-Timeframe Analysis and High-Frequency Execution in Cryptocurrency Markets",
+    "authors": [
+      "Wěi Zhāng"
+    ],
+    "abstract": "This paper explores neural network-based approaches for algorithmic trading\nin cryptocurrency markets. Our approach combines multi-timeframe trend analysis\nwith high-frequency direction prediction networks, achieving positive\nrisk-adjusted returns through statistical modeling and systematic market\nexploitation. The system integrates diverse data sources including market data,\non-chain metrics, and orderbook dynamics, translating these into unified\nbuy/sell pressure signals. We demonstrate how machine learning models can\neffectively capture cross-timeframe relationships, enabling sub-second trading\ndecisions with statistical confidence.",
+    "url": "http://arxiv.org/abs/2508.02356v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.02356v1",
+    "published": "2025-08-04T12:46:39+00:00",
+    "updated": "2025-08-04T12:46:39+00:00",
+    "categories": [
+      "q-fin.CP"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:27:06.188953"
+  },
+  {
+    "title": "An Enhanced Focal Loss Function to Mitigate Class Imbalance in Auto Insurance Fraud Detection with Explainable AI",
+    "authors": [
+      "Francis Boabang",
+      "Samuel Asante Gyamerah"
+    ],
+    "abstract": "In insurance fraud prediction, handling class imbalance remains a critical\nchallenge. This paper presents a novel multistage focal loss function designed\nto enhance the performance of machine learning models in such imbalanced\nsettings by helping to escape local minima and converge to a good solution.\nBuilding upon the foundation of the standard focal loss, our proposed approach\nintroduces a dynamic, multi-stage convex and nonconvex mechanism that\nprogressively adjusts the focus on hard-to-classify samples across training\nepochs. This strategic refinement facilitates more stable learning and improved\ndiscrimination between fraudulent and legitimate cases. Through extensive\nexperimentation on a real-world insurance dataset, our method achieved better\nperformance than the traditional focal loss, as measured by accuracy,\nprecision, F1-score, recall and Area Under the Curve (AUC) metrics on the auto\ninsurance dataset. These results demonstrate the efficacy of the multistage\nfocal loss in boosting model robustness and predictive accuracy in highly\nskewed classification tasks, offering significant implications for fraud\ndetection systems in the insurance industry. An explainable model is included\nto interpret the results.",
+    "url": "http://arxiv.org/abs/2508.02283v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.02283v1",
+    "published": "2025-08-04T10:53:10+00:00",
+    "updated": "2025-08-04T10:53:10+00:00",
+    "categories": [
+      "cs.LG",
+      "q-fin.CP",
+      "q-fin.RM"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:27:06.188976"
+  },
+  {
+    "title": "ByteGen: A Tokenizer-Free Generative Model for Orderbook Events in Byte Space",
+    "authors": [
+      "Yang Li",
+      "Zhi Chen"
+    ],
+    "abstract": "Generative modeling of high-frequency limit order book (LOB) dynamics is a\ncritical yet unsolved challenge in quantitative finance, essential for robust\nmarket simulation and strategy backtesting. Existing approaches are often\nconstrained by simplifying stochastic assumptions or, in the case of modern\ndeep learning models like Transformers, rely on tokenization schemes that\naffect the high-precision, numerical nature of financial data through\ndiscretization and binning. To address these limitations, we introduce ByteGen,\na novel generative model that operates directly on the raw byte streams of LOB\nevents. Our approach treats the problem as an autoregressive next-byte\nprediction task, for which we design a compact and efficient 32-byte packed\nbinary format to represent market messages without information loss. The core\nnovelty of our work is the complete elimination of feature engineering and\ntokenization, enabling the model to learn market dynamics from its most\nfundamental representation. We achieve this by adapting the H-Net architecture,\na hybrid Mamba-Transformer model that uses a dynamic chunking mechanism to\ndiscover the inherent structure of market messages without predefined rules.\nOur primary contributions are: 1) the first end-to-end, byte-level framework\nfor LOB modeling; 2) an efficient packed data representation; and 3) a\ncomprehensive evaluation on high-frequency data. Trained on over 34 million\nevents from CME Bitcoin futures, ByteGen successfully reproduces key stylized\nfacts of financial markets, generating realistic price distributions,\nheavy-tailed returns, and bursty event timing. Our findings demonstrate that\nlearning directly from byte space is a promising and highly flexible paradigm\nfor modeling complex financial systems, achieving competitive performance on\nstandard market quality metrics without the biases of tokenization.",
+    "url": "http://arxiv.org/abs/2508.02247v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.02247v1",
+    "published": "2025-08-04T09:48:42+00:00",
+    "updated": "2025-08-04T09:48:42+00:00",
+    "categories": [
+      "q-fin.CP",
+      "cs.AI",
+      "cs.CE",
+      "cs.LG",
+      "q-fin.TR"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:27:06.189006"
+  },
+  {
+    "title": "The Financial Connectome: A Brain-Inspired Framework for Modeling Latent Market Dynamics",
+    "authors": [
+      "Yuda Bi",
+      "Vince D Calhoun"
+    ],
+    "abstract": "We propose the Financial Connectome, a new scientific discipline that models\nfinancial markets through the lens of brain functional architecture. Inspired\nby the foundational work of group independent component analysis (groupICA) in\nneuroscience, we reimagine markets not as collections of assets, but as\nhigh-dimensional dynamic systems composed of latent market modules. Treating\nstocks as functional nodes and their co-fluctuations as expressions of\ncollective cognition, we introduce dynamic Market Network Connectivity (dMNC),\nthe financial analogue of dynamic functional connectivity (dFNC). This\nbiologically inspired framework reveals structurally persistent market\nsubnetworks, captures regime shifts, and uncovers systemic early warning\nsignals all without reliance on predictive labels. Our results suggest that\nmarkets, like brains, exhibit modular, self-organizing, and temporally evolving\narchitectures. This work inaugurates the field of financial connectomics, a\nprincipled synthesis of systems neuroscience and quantitative finance aimed at\nuncovering the hidden logic of complex economies.",
+    "url": "http://arxiv.org/abs/2508.02012v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.02012v1",
+    "published": "2025-08-04T03:14:29+00:00",
+    "updated": "2025-08-04T03:14:29+00:00",
+    "categories": [
+      "q-fin.CP"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:27:06.189027"
+  }
+]

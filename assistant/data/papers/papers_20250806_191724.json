@@ -1,0 +1,33 @@
+[
+  {
+    "title": "Modeling Loss-Versus-Rebalancing in Automated Market Makers via Continuous-Installment Options",
+    "authors": [
+      "Srisht Fateh Singh",
+      "Reina Ke Xin Li",
+      "Samuel Gaskin",
+      "Yuntao Wu",
+      "Jeffrey Klinck",
+      "Panagiotis Michalopoulos",
+      "Zissis Poulos",
+      "Andreas Veneris"
+    ],
+    "published": "2025-08-05 00:30:24+00:00",
+    "updated": "2025-08-05 00:30:24+00:00",
+    "summary": "This paper mathematically models a constant-function automated market maker\n(CFAMM) position as a portfolio of exotic options, known as perpetual American\ncontinuous-installment (CI) options. This model replicates an AMM position's\ndelta at each point in time over an infinite time horizon, thus taking into\naccount the perpetual nature and optionality to withdraw of liquidity\nprovision. This framework yields two key theoretical results: (a) It proves\nthat the AMM's adverse-selection cost, loss-versus-rebalancing (LVR), is\nanalytically identical to the continuous funding fees (the time value decay or\ntheta) earned by the at-the-money CI option embedded in the replicating\nportfolio. (b) A special case of this model derives an AMM liquidity position's\ndelta profile and boundaries that suffer approximately constant LVR, up to a\nbounded residual error, over an arbitrarily long forward window. Finally, the\npaper describes how the constant volatility parameter required by the perpetual\noption can be calibrated from the term structure of implied volatilities and\nestimates the errors for both implied volatility calibration and LVR residual\nerror. Thus, this work provides a practical framework enabling liquidity\nproviders to choose an AMM liquidity profile and price boundaries for an\narbitrarily long, forward-looking time window where they can expect an\napproximately constant, price-independent LVR. The results establish a rigorous\noption-theoretic interpretation of AMMs and their LVR, and provide actionable\nguidance for liquidity providers in estimating future adverse-selection costs\nand optimizing position parameters.",
+    "arxiv_id": "2508.02971v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.02971v1",
+    "categories": [
+      "q-fin.MF",
+      "q-fin.PR",
+      "q-fin.TR"
+    ],
+    "relevance_score": 4.0,
+    "extracted_concepts": [
+      "derivatives"
+    ],
+    "languages": [
+      "en"
+    ],
+    "processing_timestamp": "2025-08-06T19:17:24.018457"
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "concepts": {
+    "derivatives": {
+      "papers": [
+        {
+          "title": "Modeling Loss-Versus-Rebalancing in Automated Market Makers via Continuous-Installment Options",
+          "authors": [
+            "Srisht Fateh Singh",
+            "Reina Ke Xin Li",
+            "Samuel Gaskin"
+          ],
+          "arxiv_id": "2508.02971v1",
+          "relevance_score": 4.0
+        }
+      ],
+      "frequency": 1,
+      "recent_developments": []
+    }
+  },
+  "authors": {
+    "Srisht Fateh Singh": {
+      "papers": [
+        "Modeling Loss-Versus-Rebalancing in Automated Mark"
+      ],
+      "concepts": [
+        "derivatives"
+      ]
+    },
+    "Reina Ke Xin Li": {
+      "papers": [
+        "Modeling Loss-Versus-Rebalancing in Automated Mark"
+      ],
+      "concepts": [
+        "derivatives"
+      ]
+    },
+    "Samuel Gaskin": {
+      "papers": [
+        "Modeling Loss-Versus-Rebalancing in Automated Mark"
+      ],
+      "concepts": [
+        "derivatives"
+      ]
+    }
+  },
+  "trending_topics": [
+    "derivatives"
+  ],
+  "methodologies": {},
+  "applications": {}
+}

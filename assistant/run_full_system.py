@@ -11,12 +11,39 @@ import time
 import subprocess
 import threading
 import signal
+import logging
 from pathlib import Path
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class FullSystemManager:
     def __init__(self):
         self.auto_service_process = None
         self.running = True
+        self.vector_store = None
+        self.agent = None
+        
+    def _initialize_ai_system(self):
+        """Initialize the AI system with vector store and agent"""
+        if self.agent is None:
+            try:
+                print("🧠 Inicializando sistema de IA...")
+                from vector_db import load_vector_store
+                from simple_agent import SimpleQuantFinanceAgent
+                
+                # Load vector store
+                self.vector_store = load_vector_store()
+                
+                # Initialize agent
+                self.agent = SimpleQuantFinanceAgent(self.vector_store)
+                print("✅ Sistema de IA inicializado")
+                return True
+            except Exception as e:
+                print(f"❌ Error inicializando sistema de IA: {e}")
+                return False
+        return True
         
     def print_banner(self):
         print("="*80)
@@ -31,16 +58,34 @@ class FullSystemManager:
         """Inicia el servicio automático de papers en background"""
         try:
             print("🔄 Iniciando servicio automático de papers...")
+            
+            # Check if the service script exists
+            service_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "auto_paper_service.py")
+            if not os.path.exists(service_path):
+                print("❌ Error: auto_paper_service.py no encontrado")
+                return False
+                
             self.auto_service_process = subprocess.Popen(
                 [sys.executable, "auto_paper_service.py"],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 cwd=os.path.dirname(os.path.abspath(__file__))
             )
+            
+            # Wait a moment to check if the process started successfully
+            time.sleep(2)
+            if self.auto_service_process.poll() is not None:
+                print("❌ Error: El servicio automático no pudo iniciarse")
+                return False
+                
             print("✅ Servicio automático iniciado (PID:", self.auto_service_process.pid, ")")
             return True
+        except FileNotFoundError:
+            print("❌ Error: Python o auto_paper_service.py no encontrado")
+            return False
         except Exception as e:
             print(f"❌ Error iniciando servicio automático: {e}")
+            logger.error(f"Auto service start error: {e}", exc_info=True)
             return False
             
     def stop_auto_service(self):
@@ -61,21 +106,42 @@ class FullSystemManager:
         """Ejecuta una actualización inicial de papers"""
         print("📚 Ejecutando actualización inicial de papers...")
         try:
+            # Create directories if they don't exist
+            os.makedirs("./data/papers", exist_ok=True)
+            os.makedirs("./logs", exist_ok=True)
+            
             result = subprocess.run(
                 [sys.executable, "realtime_papers.py"],
                 input="1\n",  # Opción rápida
                 text=True,
                 capture_output=True,
-                timeout=300  # 5 minutos timeout
+                timeout=300,  # 5 minutos timeout
+                cwd=os.path.dirname(os.path.abspath(__file__))
             )
+            
             if result.returncode == 0:
                 print("✅ Actualización inicial completada")
+                
+                # Try to parse output to show summary
+                output_lines = result.stdout.split('\n')
+                for line in output_lines:
+                    if "Total de papers:" in line or "papers descargados:" in line:
+                        print(f"📊 {line.strip()}")
+                        
             else:
                 print("⚠️ Actualización inicial con warnings")
+                if result.stderr:
+                    logger.warning(f"Paper update warnings: {result.stderr[:200]}...")
+                    
         except subprocess.TimeoutExpired:
             print("⏰ Timeout en actualización inicial - continuando...")
+            logger.warning("Paper update timeout after 5 minutes")
+        except FileNotFoundError:
+            print("❌ Error: No se encontró realtime_papers.py")
+            logger.error("realtime_papers.py not found")
         except Exception as e:
             print(f"❌ Error en actualización inicial: {e}")
+            logger.error(f"Initial paper update error: {e}", exc_info=True)
             
     def show_menu(self):
         """Muestra el menú principal"""
@@ -88,8 +154,68 @@ class FullSystemManager:
         print("4. ⚙️ Configurar Servicio Automático / Configure Auto Service")
         print("5. 🔍 Buscar en Papers / Search Papers")
         print("6. 📈 Ejemplo de Consulta Financiera / Financial Query Example")
+        print("7. 🧠 Inicializar Sistema IA / Initialize AI System")
+        print("8. 📚 Ver Papers Recientes / View Recent Papers")
         print("0. 🚪 Salir / Exit")
         print("-"*50)
+        
+    def view_recent_papers(self):
+        """Muestra los papers recientes descargados"""
+        print("\n📚 PAPERS RECIENTES / RECENT PAPERS")
+        print("="*40)
+        
+        papers_dir = Path("./data/papers")
+        if not papers_dir.exists():
+            print("❌ No hay directorio de papers")
+            return
+            
+        paper_files = list(papers_dir.glob("papers_*.json"))
+        if not paper_files:
+            print("❌ No hay papers descargados")
+            print("💡 Usa la opción 2 para descargar papers")
+            return
+            
+        # Get the latest file
+        latest_file = max(paper_files, key=lambda p: p.stat().st_mtime)
+        
+        try:
+            import json
+            with open(latest_file, 'r') as f:
+                papers = json.load(f)
+                
+            print(f"📄 Archivo: {latest_file.name}")
+            print(f"📊 Total de papers: {len(papers)}")
+            
+            # Show first 10 papers
+            print("\n🔥 Últimos papers descargados:")
+            for i, paper in enumerate(papers[:10], 1):
+                title = paper.get('title', 'Sin título')
+                authors = paper.get('authors', ['Desconocido'])
+                category = paper.get('category', 'N/A')
+                
+                # Truncate title if too long
+                if len(title) > 60:
+                    title = title[:57] + "..."
+                    
+                # Handle authors list
+                if isinstance(authors, list):
+                    author_str = authors[0] if authors else "Desconocido"
+                    if len(authors) > 1:
+                        author_str += f" et al. ({len(authors)} autores)"
+                else:
+                    author_str = str(authors)
+                    
+                print(f"   {i:2d}. {title}")
+                print(f"       👥 {author_str}")
+                print(f"       🏷️ {category}")
+                print()
+                
+            if len(papers) > 10:
+                print(f"... y {len(papers) - 10} papers más")
+                
+        except Exception as e:
+            print(f"❌ Error leyendo papers: {e}")
+            logger.error(f"Error reading papers: {e}", exc_info=True)
         
     def run_interactive_chat(self):
         """Ejecuta el chat interactivo"""
@@ -126,6 +252,15 @@ class FullSystemManager:
                 mod_time = latest.stat().st_mtime
                 hours_ago = (time.time() - mod_time) / 3600
                 print(f"🕒 Últimos papers: hace {hours_ago:.1f} horas")
+                
+                # Show paper count info
+                try:
+                    import json
+                    with open(latest, 'r') as f:
+                        papers_data = json.load(f)
+                    print(f"📄 Papers en último archivo: {len(papers_data)}")
+                except Exception as e:
+                    logger.warning(f"Error reading paper file: {e}")
         else:
             print("📚 Papers descargados: 0 archivos")
             
@@ -141,6 +276,21 @@ class FullSystemManager:
             print("🗃️ Base de datos vectorial: ✅ Disponible")
         else:
             print("🗃️ Base de datos vectorial: ⚠️ No encontrada")
+            
+        # Check AI system
+        if self.agent is not None:
+            print("🤖 Sistema de IA: ✅ Inicializado")
+            try:
+                health = self.agent.health_check()
+                if health.get('overall_healthy', False):
+                    print("💚 Estado de IA: ✅ Saludable")
+                else:
+                    print("💛 Estado de IA: ⚠️ Con advertencias")
+            except Exception as e:
+                print("💛 Estado de IA: ⚠️ Error en verificación")
+                logger.warning(f"Health check error: {e}")
+        else:
+            print("🤖 Sistema de IA: ❌ No inicializado")
             
         print("="*50)
         
@@ -176,15 +326,16 @@ class FullSystemManager:
         print("\n🔍 BÚSQUEDA EN PAPERS")
         print("="*30)
         
-        # Importar y usar el agente para buscar
+        # Initialize AI system if needed
+        if not self._initialize_ai_system():
+            print("❌ No se pudo inicializar el sistema de IA")
+            return
+        
         try:
-            from simple_agent import SimpleQuantFinanceAgent
-            agent = SimpleQuantFinanceAgent()
-            
             query = input("💭 ¿Qué quieres buscar?: ").strip()
             if query:
                 print(f"\n🔎 Buscando: '{query}'...")
-                response = agent.query(f"Busca información sobre: {query}")
+                response = self.agent.query(f"Busca información sobre: {query}")
                 print("\n📝 Resultado:")
                 print("-" * 40)
                 print(response)
@@ -194,11 +345,17 @@ class FullSystemManager:
                 
         except Exception as e:
             print(f"❌ Error en búsqueda: {e}")
+            logger.error(f"Search error: {e}", exc_info=True)
             
     def financial_query_example(self):
         """Muestra un ejemplo de consulta financiera"""
         print("\n📈 EJEMPLO DE CONSULTA FINANCIERA")
         print("="*40)
+        
+        # Initialize AI system if needed
+        if not self._initialize_ai_system():
+            print("❌ No se pudo inicializar el sistema de IA")
+            return
         
         examples = [
             "¿Cómo funciona el modelo Black-Scholes?",
@@ -218,9 +375,7 @@ class FullSystemManager:
                 selected_query = examples[choice]
                 print(f"\n🤖 Ejecutando: '{selected_query}'")
                 
-                from simple_agent import SimpleQuantFinanceAgent
-                agent = SimpleQuantFinanceAgent()
-                response = agent.query(selected_query)
+                response = self.agent.query(selected_query)
                 
                 print("\n📝 Respuesta:")
                 print("="*50)
@@ -232,6 +387,7 @@ class FullSystemManager:
             print("❌ Entrada inválida")
         except Exception as e:
             print(f"❌ Error: {e}")
+            logger.error(f"Financial query error: {e}", exc_info=True)
             
     def signal_handler(self, signum, frame):
         """Manejador de señales para shutdown limpio"""
@@ -284,6 +440,10 @@ class FullSystemManager:
                     self.search_papers()
                 elif choice == "6":
                     self.financial_query_example()
+                elif choice == "7":
+                    self._initialize_ai_system()
+                elif choice == "8":
+                    self.view_recent_papers()
                 else:
                     print("❌ Opción inválida. Intenta de nuevo.")
                     

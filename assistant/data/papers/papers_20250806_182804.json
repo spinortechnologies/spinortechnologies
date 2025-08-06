@@ -1,0 +1,152 @@
+[
+  {
+    "title": "To Bubble or Not to Bubble: Asset Price Dynamics and Optimality in OLG Economies",
+    "authors": [
+      "Stefano Bosi",
+      "Cuong Le Van",
+      "Ngoc-Sang Pham"
+    ],
+    "abstract": "We study an overlapping generations (OLG) exchange economy with an asset that\nyields dividends. First, we derive general conditions, based on exogenous\nparameters, that give rise to three distinct scenarios: (1) only bubbleless\nequilibria exist, (2) a bubbleless equilibrium coexists with a continuum of\nbubbly equilibria, and (3) all equilibria are bubbly. Under stationary\nendowments and standard assumptions, we provide a complete characterization of\nthe equilibrium set and the associated asset price dynamics. In this setting, a\nbubbly equilibrium exists if and only if the interest rate in the economy\nwithout the asset is strictly lower than the population growth rate and the sum\nof per capita dividends is finite. Second, we establish necessary and\nsufficient conditions for Pareto optimality. Finally, we investigate the\nrelationship between asset price behaviors and the optimality of equilibria.",
+    "url": "http://arxiv.org/abs/2508.03230v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.03230v1",
+    "published": "2025-08-05T08:59:30+00:00",
+    "updated": "2025-08-05T08:59:30+00:00",
+    "categories": [
+      "q-fin.CP",
+      "q-fin.PR"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:27:49.789008"
+  },
+  {
+    "title": "Modeling Loss-Versus-Rebalancing in Automated Market Makers via Continuous-Installment Options",
+    "authors": [
+      "Srisht Fateh Singh",
+      "Reina Ke Xin Li",
+      "Samuel Gaskin",
+      "Yuntao Wu",
+      "Jeffrey Klinck",
+      "Panagiotis Michalopoulos",
+      "Zissis Poulos",
+      "Andreas Veneris"
+    ],
+    "abstract": "This paper mathematically models a constant-function automated market maker\n(CFAMM) position as a portfolio of exotic options, known as perpetual American\ncontinuous-installment (CI) options. This model replicates an AMM position's\ndelta at each point in time over an infinite time horizon, thus taking into\naccount the perpetual nature and optionality to withdraw of liquidity\nprovision. This framework yields two key theoretical results: (a) It proves\nthat the AMM's adverse-selection cost, loss-versus-rebalancing (LVR), is\nanalytically identical to the continuous funding fees (the time value decay or\ntheta) earned by the at-the-money CI option embedded in the replicating\nportfolio. (b) A special case of this model derives an AMM liquidity position's\ndelta profile and boundaries that suffer approximately constant LVR, up to a\nbounded residual error, over an arbitrarily long forward window. Finally, the\npaper describes how the constant volatility parameter required by the perpetual\noption can be calibrated from the term structure of implied volatilities and\nestimates the errors for both implied volatility calibration and LVR residual\nerror. Thus, this work provides a practical framework enabling liquidity\nproviders to choose an AMM liquidity profile and price boundaries for an\narbitrarily long, forward-looking time window where they can expect an\napproximately constant, price-independent LVR. The results establish a rigorous\noption-theoretic interpretation of AMMs and their LVR, and provide actionable\nguidance for liquidity providers in estimating future adverse-selection costs\nand optimizing position parameters.",
+    "url": "http://arxiv.org/abs/2508.02971v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.02971v1",
+    "published": "2025-08-05T00:30:24+00:00",
+    "updated": "2025-08-05T00:30:24+00:00",
+    "categories": [
+      "q-fin.MF",
+      "q-fin.PR",
+      "q-fin.TR"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:27:49.789051"
+  },
+  {
+    "title": "Unravelling the Probabilistic Forest: Arbitrage in Prediction Markets",
+    "authors": [
+      "Oriol Saguillo",
+      "Vahid Ghafouri",
+      "Lucianna Kiffer",
+      "Guillermo Suarez-Tangil"
+    ],
+    "abstract": "Polymarket is a prediction market platform where users can speculate on\nfuture events by trading shares tied to specific outcomes, known as conditions.\nEach market is associated with a set of one or more such conditions. To ensure\nproper market resolution, the condition set must be exhaustive -- collectively\naccounting for all possible outcomes -- and mutually exclusive -- only one\ncondition may resolve as true. Thus, the collective prices of all related\noutcomes should be \\$1, representing a combined probability of 1 of any\noutcome. Despite this design, Polymarket exhibits cases where dependent assets\nare mispriced, allowing for purchasing (or selling) a certain outcome for less\nthan (or more than) \\$1, guaranteeing profit. This phenomenon, known as\narbitrage, could enable sophisticated participants to exploit such\ninconsistencies.\n  In this paper, we conduct an empirical arbitrage analysis on Polymarket data\nto answer three key questions: (Q1) What conditions give rise to arbitrage (Q2)\nDoes arbitrage actually occur on Polymarket and (Q3) Has anyone exploited these\nopportunities. A major challenge in analyzing arbitrage between related markets\nlies in the scalability of comparisons across a large number of markets and\nconditions, with a naive analysis requiring $O(2^{n+m})$ comparisons. To\novercome this, we employ a heuristic-driven reduction strategy based on\ntimeliness, topical similarity, and combinatorial relationships, further\nvalidated by expert input.\n  Our study reveals two distinct forms of arbitrage on Polymarket: Market\nRebalancing Arbitrage, which occurs within a single market or condition, and\nCombinatorial Arbitrage, which spans across multiple markets. We use on-chain\nhistorical order book data to analyze when these types of arbitrage\nopportunities have existed, and when they have been executed by users. We find\na realized estimate of 40 million USD of profit extracted.",
+    "url": "http://arxiv.org/abs/2508.03474v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.03474v1",
+    "published": "2025-08-05T14:06:50+00:00",
+    "updated": "2025-08-05T14:06:50+00:00",
+    "categories": [
+      "cs.CR",
+      "q-fin.TR"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:27:58.922501"
+  },
+  {
+    "title": "Measuring DEX Efficiency and The Effect of an Enhanced Routing Method on Both DEX Efficiency and Stakeholders' Benefits",
+    "authors": [
+      "Yu Zhang",
+      "Claudio J. Tessone"
+    ],
+    "abstract": "The efficiency of decentralized exchanges (DEXs) and the influence of token\nrouting algorithms on market performance and stakeholder outcomes remain\nunderexplored. This paper introduces the concept of Standardized Total\nArbitrage Profit (STAP), computed via convex optimization, as a systematic\nmeasure of DEX efficiency. We prove that executing the trade order maximizing\nSTAP and reintegrating the resulting transaction fees eliminates all arbitrage\nopportunities-both cyclic arbitrage within DEXs and between DEXs and\ncentralized exchanges (CEXs). In a fully efficient DEX (i.e., STAP = 0), the\nmonetary value of target tokens received must not exceed that of the source\ntokens, regardless of the routing algorithm. Any violation indicates arbitrage\npotential, making STAP a reliable metric for arbitrage detection. Using a token\ngraph comprising 11 tokens and 18 liquidity pools based on Uniswap V2 data, we\nobserve a decline in DEX efficiency between June 21 and November 8, 2024.\nSimulations comparing two routing algorithms-Yu Zhang et al.'s line-graph-based\nmethod and the depth-first search (DFS) algorithm-show that employing more\nprofitable routing improves DEX efficiency and trader returns over time.\nMoreover, while total value locked (TVL) remains stable with the line-graph\nmethod, it increases under the DFS algorithm, indicating greater aggregate\nbenefits for liquidity providers.",
+    "url": "http://arxiv.org/abs/2508.03217v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.03217v1",
+    "published": "2025-08-05T08:45:38+00:00",
+    "updated": "2025-08-05T08:45:38+00:00",
+    "categories": [
+      "q-fin.TR"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:27:58.922540"
+  },
+  {
+    "title": "Modeling Loss-Versus-Rebalancing in Automated Market Makers via Continuous-Installment Options",
+    "authors": [
+      "Srisht Fateh Singh",
+      "Reina Ke Xin Li",
+      "Samuel Gaskin",
+      "Yuntao Wu",
+      "Jeffrey Klinck",
+      "Panagiotis Michalopoulos",
+      "Zissis Poulos",
+      "Andreas Veneris"
+    ],
+    "abstract": "This paper mathematically models a constant-function automated market maker\n(CFAMM) position as a portfolio of exotic options, known as perpetual American\ncontinuous-installment (CI) options. This model replicates an AMM position's\ndelta at each point in time over an infinite time horizon, thus taking into\naccount the perpetual nature and optionality to withdraw of liquidity\nprovision. This framework yields two key theoretical results: (a) It proves\nthat the AMM's adverse-selection cost, loss-versus-rebalancing (LVR), is\nanalytically identical to the continuous funding fees (the time value decay or\ntheta) earned by the at-the-money CI option embedded in the replicating\nportfolio. (b) A special case of this model derives an AMM liquidity position's\ndelta profile and boundaries that suffer approximately constant LVR, up to a\nbounded residual error, over an arbitrarily long forward window. Finally, the\npaper describes how the constant volatility parameter required by the perpetual\noption can be calibrated from the term structure of implied volatilities and\nestimates the errors for both implied volatility calibration and LVR residual\nerror. Thus, this work provides a practical framework enabling liquidity\nproviders to choose an AMM liquidity profile and price boundaries for an\narbitrarily long, forward-looking time window where they can expect an\napproximately constant, price-independent LVR. The results establish a rigorous\noption-theoretic interpretation of AMMs and their LVR, and provide actionable\nguidance for liquidity providers in estimating future adverse-selection costs\nand optimizing position parameters.",
+    "url": "http://arxiv.org/abs/2508.02971v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.02971v1",
+    "published": "2025-08-05T00:30:24+00:00",
+    "updated": "2025-08-05T00:30:24+00:00",
+    "categories": [
+      "q-fin.MF",
+      "q-fin.PR",
+      "q-fin.TR"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:27:58.922572"
+  },
+  {
+    "title": "Modeling Loss-Versus-Rebalancing in Automated Market Makers via Continuous-Installment Options",
+    "authors": [
+      "Srisht Fateh Singh",
+      "Reina Ke Xin Li",
+      "Samuel Gaskin",
+      "Yuntao Wu",
+      "Jeffrey Klinck",
+      "Panagiotis Michalopoulos",
+      "Zissis Poulos",
+      "Andreas Veneris"
+    ],
+    "abstract": "This paper mathematically models a constant-function automated market maker\n(CFAMM) position as a portfolio of exotic options, known as perpetual American\ncontinuous-installment (CI) options. This model replicates an AMM position's\ndelta at each point in time over an infinite time horizon, thus taking into\naccount the perpetual nature and optionality to withdraw of liquidity\nprovision. This framework yields two key theoretical results: (a) It proves\nthat the AMM's adverse-selection cost, loss-versus-rebalancing (LVR), is\nanalytically identical to the continuous funding fees (the time value decay or\ntheta) earned by the at-the-money CI option embedded in the replicating\nportfolio. (b) A special case of this model derives an AMM liquidity position's\ndelta profile and boundaries that suffer approximately constant LVR, up to a\nbounded residual error, over an arbitrarily long forward window. Finally, the\npaper describes how the constant volatility parameter required by the perpetual\noption can be calibrated from the term structure of implied volatilities and\nestimates the errors for both implied volatility calibration and LVR residual\nerror. Thus, this work provides a practical framework enabling liquidity\nproviders to choose an AMM liquidity profile and price boundaries for an\narbitrarily long, forward-looking time window where they can expect an\napproximately constant, price-independent LVR. The results establish a rigorous\noption-theoretic interpretation of AMMs and their LVR, and provide actionable\nguidance for liquidity providers in estimating future adverse-selection costs\nand optimizing position parameters.",
+    "url": "http://arxiv.org/abs/2508.02971v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.02971v1",
+    "published": "2025-08-05T00:30:24+00:00",
+    "updated": "2025-08-05T00:30:24+00:00",
+    "categories": [
+      "q-fin.MF",
+      "q-fin.PR",
+      "q-fin.TR"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:28:01.949645"
+  },
+  {
+    "title": "To Bubble or Not to Bubble: Asset Price Dynamics and Optimality in OLG Economies",
+    "authors": [
+      "Stefano Bosi",
+      "Cuong Le Van",
+      "Ngoc-Sang Pham"
+    ],
+    "abstract": "We study an overlapping generations (OLG) exchange economy with an asset that\nyields dividends. First, we derive general conditions, based on exogenous\nparameters, that give rise to three distinct scenarios: (1) only bubbleless\nequilibria exist, (2) a bubbleless equilibrium coexists with a continuum of\nbubbly equilibria, and (3) all equilibria are bubbly. Under stationary\nendowments and standard assumptions, we provide a complete characterization of\nthe equilibrium set and the associated asset price dynamics. In this setting, a\nbubbly equilibrium exists if and only if the interest rate in the economy\nwithout the asset is strictly lower than the population growth rate and the sum\nof per capita dividends is finite. Second, we establish necessary and\nsufficient conditions for Pareto optimality. Finally, we investigate the\nrelationship between asset price behaviors and the optimality of equilibria.",
+    "url": "http://arxiv.org/abs/2508.03230v1",
+    "pdf_url": "http://arxiv.org/pdf/2508.03230v1",
+    "published": "2025-08-05T08:59:30+00:00",
+    "updated": "2025-08-05T08:59:30+00:00",
+    "categories": [
+      "q-fin.CP",
+      "q-fin.PR"
+    ],
+    "source": "arxiv",
+    "fetched_at": "2025-08-06T18:28:04.992715"
+  }
+]
