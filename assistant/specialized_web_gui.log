@@ -230,3 +230,7 @@ INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:51:54] "GET /api/training_status HTT
 INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:52:24] "GET /api/training_status HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:52:55] "GET /api/training_status HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:53:25] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:53:55] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:54:26] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:54:56] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:54:59] "GET /socket.io/?EIO=4&transport=websocket&sid=1g4473nETMEBjuRmAAAH HTTP/1.1" 200 -
