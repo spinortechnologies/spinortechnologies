@@ -41,8 +41,9 @@ def main():
         print("  - What is portfolio optimization?")
         print("  - ¿Qué es el trading algorítmico?")
         print()
-        print("📋 Comandos: 'help' (ayuda), 'exit' (salir), 'status' (estado)")
-        print("📋 Commands: 'help' (help), 'exit' (exit), 'status' (status)")
+        print("📋 Comandos: 'help' (ayuda), 'exit' (salir), 'status' (estado), 'update' (papers), 'papers' (ver papers)")
+        print("📋 Commands: 'help' (help), 'exit' (exit), 'status' (status), 'update' (papers), 'papers' (view papers)")
+        print("📋 'update' (descargar papers recientes), 'papers' (ver papers)")
         print()
         
         while True:
@@ -59,6 +60,8 @@ def main():
                     print("  - Ask questions about quantitative finance")
                     print("  - Temas: opciones, riesgo, carteras, trading")
                     print("  - Topics: options, risk, portfolios, trading")
+                    print("  - Usa 'update' para descargar papers recientes")
+                    print("  - Use 'papers' to see available research papers")
                     print("  - Escribe 'exit' para salir / Type 'exit' to quit")
                     print()
                     continue
@@ -71,6 +74,48 @@ def main():
                     if 'total_queries' in summary:
                         print(f"   Consultas: {summary['total_queries']}")
                         print(f"   Rendimiento: {summary['performance']}")
+                    print()
+                    continue
+                    
+                elif query.lower() == 'update':
+                    print("🔄 Descargando papers recientes de ArXiv...")
+                    try:
+                        from realtime_papers import RealTimePaperFetcher
+                        fetcher = RealTimePaperFetcher()
+                        papers = fetcher.fetch_latest_papers(days_back=3, max_papers=10)
+                        if papers:
+                            fetcher.save_papers(papers)
+                            fetcher.update_vector_database(papers)
+                            print(f"✅ {len(papers)} papers descargados y agregados a la base de datos")
+                        else:
+                            print("ℹ️ No se encontraron papers nuevos")
+                    except Exception as e:
+                        print(f"❌ Error descargando papers: {e}")
+                    print()
+                    continue
+                    
+                elif query.lower() == 'papers':
+                    print("📚 Verificando papers recientes...")
+                    try:
+                        import glob
+                        import json
+                        papers_dir = "./data/papers"
+                        if os.path.exists(papers_dir):
+                            recent_papers = glob.glob(os.path.join(papers_dir, "papers_*.json"))
+                            if recent_papers:
+                                latest_file = max(recent_papers, key=os.path.getctime)
+                                with open(latest_file, 'r') as f:
+                                    papers = json.load(f)
+                                print(f"📄 Papers disponibles: {len(papers)}")
+                                print("🔥 Últimos 3 papers:")
+                                for i, paper in enumerate(papers[:3]):
+                                    print(f"   {i+1}. {paper['title'][:60]}...")
+                            else:
+                                print("ℹ️ No hay papers descargados. Usa 'update' para descargar.")
+                        else:
+                            print("ℹ️ No hay papers descargados. Usa 'update' para descargar.")
+                    except Exception as e:
+                        print(f"❌ Error: {e}")
                     print()
                     continue
                     

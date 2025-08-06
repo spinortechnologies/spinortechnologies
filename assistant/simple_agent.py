@@ -7,6 +7,7 @@ Version: 2.0
 
 import os
 import logging
+import time
 from typing import Dict, List, Optional, Any
 from datetime import datetime
 
@@ -28,6 +29,9 @@ class SimpleQuantFinanceAgent:
         self.vector_store = vector_store
         self.conversation_history = []
         self.query_count = 0
+        
+        # Check for real-time papers
+        self._check_realtime_papers()
         
         # Financial concepts mapping for intelligent responses
         self.financial_concepts = {
@@ -54,6 +58,61 @@ class SimpleQuantFinanceAgent:
         }
         
         logger.info("Simple QuantFinance Agent initialized successfully")
+    
+    def _check_realtime_papers(self):
+        """Check for and suggest real-time paper updates."""
+        papers_dir = "./data/papers"
+        if os.path.exists(papers_dir):
+            import glob
+            recent_papers = glob.glob(os.path.join(papers_dir, "papers_*.json"))
+            if recent_papers:
+                latest_file = max(recent_papers, key=os.path.getctime)
+                mod_time = os.path.getmtime(latest_file)
+                hours_old = (time.time() - mod_time) / 3600
+                
+                if hours_old < 24:
+                    logger.info(f"📚 Papers recientes disponibles (actualizado hace {hours_old:.1f} horas)")
+                else:
+                    logger.info("📚 Papers disponibles pero pueden estar desactualizados")
+            else:
+                logger.info("📚 No se encontraron papers locales - se puede ejecutar realtime_papers.py")
+        else:
+            logger.info("📚 Directorio de papers no encontrado - ejecuta realtime_papers.py para descargar papers")
+    
+    def update_with_recent_papers(self):
+        """Update the agent with recently downloaded papers."""
+        try:
+            import glob
+            import json
+            
+            papers_dir = "./data/papers"
+            if not os.path.exists(papers_dir):
+                return False
+            
+            # Find the most recent papers file
+            recent_papers = glob.glob(os.path.join(papers_dir, "papers_*.json"))
+            if not recent_papers:
+                return False
+            
+            latest_file = max(recent_papers, key=os.path.getctime)
+            
+            with open(latest_file, 'r', encoding='utf-8') as f:
+                papers = json.load(f)
+            
+            logger.info(f"📄 Cargando {len(papers)} papers recientes desde {latest_file}")
+            
+            # Add papers info to conversation context
+            self.recent_papers_info = {
+                'count': len(papers),
+                'file': latest_file,
+                'titles': [paper['title'][:50] + '...' for paper in papers[:5]]
+            }
+            
+            return True
+            
+        except Exception as e:
+            logger.warning(f"Error loading recent papers: {e}")
+            return False
     
     def query(self, question: str) -> Dict[str, Any]:
         """
