@@ -1,0 +1,99 @@
+/home/maaloncu/SPINOR/spinortechnologies/assistant/vector_db.py:170: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 1.0. An updated version of the class exists in the :class:`~langchain-huggingface package and should be used instead. To use it run `pip install -U :class:`~langchain-huggingface` and import as `from :class:`~langchain_huggingface import HuggingFaceEmbeddings``.
+  embeddings = HuggingFaceEmbeddings(
+INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+INFO:vector_db:Creating new vector store with sample documents
+WARNING:vector_db:Failed to load HuggingFace embeddings: cannot access local variable 'HuggingFaceEmbeddings' where it is not associated with a value
+INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cuda:0
+INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+INFO:vector_db:No documents provided, creating sample financial documents
+INFO:vector_db:Split 4 documents into 6 chunks
+INFO:faiss.loader:Loading faiss with AVX2 support.
+INFO:faiss.loader:Successfully loaded faiss with AVX2 support.
+INFO:faiss:Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+INFO:vector_db:Vector store created successfully
+WARNING:vector_db:Failed to save vector store: [Errno 13] Permission denied: 'knowledge_base/vector_db'
+INFO:conversational_agent:🚀 Integrated 1 papers into conversational knowledge
+INFO:conversational_agent:🤖 Advanced Conversational Agent initialized
+INFO:__main__:🤖 Advanced Conversational AI Agent initialized successfully
+INFO:enhanced_papers:🚀 Enhanced Paper Integrator initialized
+INFO:__main__:Starting SPINOR Finance AI Assistant Web GUI on http://0.0.0.0:5000
+
+============================================================
+🚀 SPINOR Quantitative Finance AI Assistant - Web GUI
+============================================================
+📊 Version: 3.0 - Web Edition
+🌐 Starting web server...
+💡 Access the interface at: http://localhost:5000
+⚡ Real-time updates via WebSocket
+🎨 Modern, responsive design
+============================================================
+ * Serving Flask app 'web_gui'
+ * Debug mode: off
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.23.188.75:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:13:47] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:13:58] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:13:58] "GET /socket.io/?EIO=4&transport=polling&t=PY0pVaR HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:13:58] "GET /api/health HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:13:58] "POST /socket.io/?EIO=4&transport=polling&t=PY0pVb0&sid=91KBx9lteiW1gcnYAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:13:58] "GET /socket.io/?EIO=4&transport=polling&t=PY0pVb0.0&sid=91KBx9lteiW1gcnYAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:13:58] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:13:58] "GET /api/papers HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:13:58] "GET /socket.io/?EIO=4&transport=polling&t=PY0pVds&sid=91KBx9lteiW1gcnYAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:13:58] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:14:21] "GET /?id=58ec34f0-a085-4ed8-b349-d81b9115e17f&vscodeBrowserReqId=1754507661188 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:14:22] "GET /socket.io/?EIO=4&transport=polling&t=PY0pb5j HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:14:22] "GET /api/health HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:14:22] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:14:22] "POST /socket.io/?EIO=4&transport=polling&t=PY0pb7G&sid=R5NIvFQe_udT2pfIAAAC HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:14:22] "GET /socket.io/?EIO=4&transport=polling&t=PY0pb7H&sid=R5NIvFQe_udT2pfIAAAC HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:14:22] "GET /api/papers HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:14:28] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:14:52] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:14:59] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:15:23] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:15:29] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:15:53] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:16:00] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:16:21] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:16:30] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:16:51] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:17:01] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:17:21] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:17:29] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:17:51] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:17:59] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:18:22] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:18:29] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:18:52] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:18:59] "GET /api/papers HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:19:00] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:19:23] "GET /api/papers HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:19:23] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:19:30] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:19:53] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:20:01] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:20:21] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:20:31] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:20:51] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:21:01] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:21:22] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:21:29] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:21:52] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:22:00] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:22:22] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:22:31] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:22:52] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:23:01] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:23:23] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:23:31] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:23:53] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:24:00] "GET /api/papers HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:24:02] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:24:21] "GET /api/papers HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:24:21] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:24:30] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:24:52] "GET /api/training_status HTTP/1.1" 200 -

@@ -1,0 +1,55 @@
+{
+  "375efa3a0b347efc": {
+    "id": "375efa3a0b347efc",
+    "content": "Black-Scholes model for option pricing using stochastic calculus and risk-neutral valuation.",
+    "source": "arxiv",
+    "paper_id": "1234.5678",
+    "title": "Advanced Black-Scholes Extensions",
+    "authors": [
+      "Smith, J.",
+      "Doe, A."
+    ],
+    "citations": 45,
+    "created_at": "2025-08-06T21:23:09.111082",
+    "last_accessed": "2025-08-06T21:23:09.111234",
+    "access_count": 2,
+    "relevance_score": 1.0,
+    "keywords": [
+      "options",
+      "pricing",
+      "stochastic"
+    ],
+    "concepts": [
+      "black-scholes",
+      "option pricing",
+      "stochastic calculus"
+    ],
+    "embedding_hash": "1cb2110d53bec98ddebfe7bfcfac42b0",
+    "redundancy_group": null
+  },
+  "ab3defc3edaffd04": {
+    "id": "ab3defc3edaffd04",
+    "content": "Monte Carlo simulation for portfolio risk assessment and value-at-risk calculations.",
+    "source": "researchgate",
+    "paper_id": "rg-567890",
+    "title": "Monte Carlo Methods in Finance",
+    "authors": [
+      "Johnson, K."
+    ],
+    "citations": 23,
+    "created_at": "2025-08-06T21:23:09.111148",
+    "last_accessed": "2025-08-06T21:23:09.111148",
+    "access_count": 1,
+    "relevance_score": 1.0,
+    "keywords": [
+      "monte carlo",
+      "risk",
+      "portfolio"
+    ],
+    "concepts": [
+      "monte carlo"
+    ],
+    "embedding_hash": "e253c7698ebefa9581eb116085e4cd99",
+    "redundancy_group": null
+  }
+}

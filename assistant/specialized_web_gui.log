@@ -1,0 +1,232 @@
+INFO:__main__:✅ Specialized AI Agent available
+INFO:__main__:🎯 Initializing Specialized AI Agent with auto-learning...
+INFO:intelligent_node_manager:🧠 Intelligent Node Manager iniciado con 0 nodos
+ERROR:specialized_ai_agent:❌ Error inicializando agente conversacional: AdvancedConversationalAgent.__init__() got an unexpected keyword argument 'memory'
+INFO:specialized_ai_agent:🎯 Agente especializado iniciado - Dominio: quantitative_finance
+INFO:__main__:✅ Specialized AI Agent initialized with intelligent node management
+INFO:__main__:🧠 Autonomous learning started in background
+INFO:specialized_ai_agent:🧠 Iniciando aprendizaje autónomo...
+INFO:auto_feeding_system:🚀 Iniciando sistema de auto-alimentación inteligente...
+INFO:auto_feeding_system:🍽️ Iniciando sesión de alimentación...
+INFO:__main__:Starting SPINOR Finance AI Assistant Web GUI on http://0.0.0.0:5000
+
+============================================================
+🚀 SPINOR Quantitative Finance AI Assistant - Web GUI
+============================================================
+📊 Version: 3.0 - Web Edition
+🌐 Starting web server...
+💡 Access the interface at: http://localhost:5000
+⚡ Real-time updates via WebSocket
+🎨 Modern, responsive design
+============================================================
+ * Serving Flask app 'web_gui'
+ * Debug mode: off
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.23.188.75:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:auto_feeding_system:✅ Parseados 0 papers de ArXiv
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:04] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:05] "GET /socket.io/?EIO=4&transport=polling&t=PY0s2Dx HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:05] "POST /socket.io/?EIO=4&transport=polling&t=PY0s2Ir&sid=qnEawCp4U1AUr1eQAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:05] "GET /socket.io/?EIO=4&transport=polling&t=PY0s2Is&sid=qnEawCp4U1AUr1eQAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:05] "GET /socket.io/?EIO=4&transport=polling&t=PY0s2Ni&sid=qnEawCp4U1AUr1eQAAAA HTTP/1.1" 200 -
+INFO:auto_feeding_system:✅ Parseados 8 papers de ArXiv
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:07] "GET /socket.io/?EIO=4&transport=polling&t=PY0s2pw HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:07] "POST /socket.io/?EIO=4&transport=polling&t=PY0s2qF&sid=wuWf67fASj2eT65yAAAC HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:07] "GET /socket.io/?EIO=4&transport=polling&t=PY0s2qH&sid=wuWf67fASj2eT65yAAAC HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:07] "GET /socket.io/?EIO=4&transport=polling&t=PY0s2qZ&sid=wuWf67fASj2eT65yAAAC HTTP/1.1" 200 -
+INFO:auto_feeding_system:✅ Parseados 8 papers de ArXiv
+INFO:auto_feeding_system:✅ Parseados 8 papers de ArXiv
+INFO:auto_feeding_system:✅ Parseados 8 papers de ArXiv
+INFO:auto_feeding_system:✅ Parseados 8 papers de ArXiv
+INFO:auto_feeding_system:✅ Parseados 10 papers de ArXiv
+INFO:auto_feeding_system:✅ Parseados 10 papers de ArXiv
+INFO:auto_feeding_system:✅ Parseados 10 papers de ArXiv
+INFO:auto_feeding_system:✅ Parseados 10 papers de ArXiv
+INFO:auto_feeding_system:✅ Parseados 10 papers de ArXiv
+INFO:auto_feeding_system:📚 ArXiv: 86 papers únicos encontrados
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: 412c8c64... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: 6e347dc7... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: c1a447a3... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: 5b1db441... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: bf1a5631... (arxiv)
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: bf1a5631bd2c1b54
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: bf1a5631bd2c1b54
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: a9754233... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: c5f9de9e... (arxiv)
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: bf1a5631bd2c1b54
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: 50d5fc19... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: 3930d35a... (arxiv)
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: bf1a5631bd2c1b54
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: bbf36b40... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: 762114be... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: fafc2291... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: ca6db2de... (arxiv)
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: bf1a5631bd2c1b54
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: bf1a5631bd2c1b54
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: d7cc009b... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: b3c7ffa7... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: 4f7ec1c3... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: a689a52f... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: 0b49181c... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: 5229cefb... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: 03af2563... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: a86fecf0... (arxiv)
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: bf1a5631bd2c1b54
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: 2e5ff86c... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: 55cc0ba8... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: fea5fa86... (arxiv)
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: fea5fa86f28873b9
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: fea5fa86f28873b9
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: fea5fa86f28873b9
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: fea5fa86f28873b9
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: a1430adf... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: 5c530727... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: db23a7d9... (arxiv)
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: db23a7d928083acd
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: bf1a5631bd2c1b54
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: 22a5a49e... (arxiv)
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: bf1a5631bd2c1b54
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: bf1a5631bd2c1b54
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: b8028509... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: bf84e2fc... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: 3840faaf... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: 97efd365... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: 55d1bf76... (arxiv)
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: 4e7d86f0... (arxiv)
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: 2e5ff86c98455ece
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: d98f2583... (arxiv)
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: d98f25830a10a2ed
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: d98f25830a10a2ed
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: 2e5ff86c98455ece
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: aded0afc... (arxiv)
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: d98f25830a10a2ed
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: d98f25830a10a2ed
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: d98f25830a10a2ed
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: b3c7ffa73ea84b51
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: 5229cefb1ff09373
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: b3c7ffa73ea84b51
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: b3c7ffa73ea84b51
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: c929d17e... (arxiv)
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: b3c7ffa73ea84b51
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: b3c7ffa73ea84b51
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: a86fecf07459b826
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: 5229cefb1ff09373
+INFO:auto_feeding_system:🔍 ResearchGate: Simulando búsqueda de papers...
+INFO:auto_feeding_system:📚 ResearchGate: 2 papers simulados
+INFO:intelligent_node_manager:📋 Nodo redundante detectado, actualizando existente: a1430adfb1c74738
+INFO:intelligent_node_manager:✅ Nuevo nodo agregado: eba46c9c... (researchgate)
+INFO:auto_feeding_system:✅ Sesión completada: 69 papers agregados, 19 rechazados
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:23] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:31] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:32] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:40] "GET /?id=58ec34f0-a085-4ed8-b349-d81b9115e17f&vscodeBrowserReqId=1754508340529 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:40] "GET /socket.io/?EIO=4&transport=websocket&sid=qnEawCp4U1AUr1eQAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:40] "GET /socket.io/?EIO=4&transport=polling&t=PY0sArD HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:40] "GET /api/health HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:40] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:40] "GET /api/papers HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:41] "POST /socket.io/?EIO=4&transport=polling&t=PY0sAwC&sid=QlNSI7eold5-C4jLAAAE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:25:41] "GET /socket.io/?EIO=4&transport=polling&t=PY0sAwD&sid=QlNSI7eold5-C4jLAAAE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:26:03] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:26:10] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:26:33] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:26:41] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:27:04] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:27:11] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:27:34] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:27:41] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:28:02] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:28:11] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:28:32] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:28:42] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:29:00] "GET /api/papers HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:29:03] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:29:10] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:29:33] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:29:40] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:30:03] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:30:10] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:30:34] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:30:41] "GET /api/papers HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:30:41] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:31:04] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:31:11] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:31:34] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:31:41] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:32:02] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:32:11] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:32:33] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:32:42] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:33:03] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:33:10] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:33:34] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:33:40] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:34:00] "GET /api/papers HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:34:04] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:34:10] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:34:35] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:34:41] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:35:05] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:35:11] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:35:35] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:35:41] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:35:41] "GET /api/papers HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:36:03] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:36:11] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:36:33] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:36:42] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:37:04] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:37:10] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:37:34] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:37:40] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:38:04] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:38:10] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:38:35] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:38:40] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:39:01] "GET /api/papers HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:39:05] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:39:11] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:39:35] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:39:41] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:40:03] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:40:11] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:40:33] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:40:39] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:40:39] "GET /api/papers HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:41:04] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:41:09] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:41:35] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:41:40] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:41:57] "GET /socket.io/?EIO=4&transport=websocket&sid=QlNSI7eold5-C4jLAAAE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:41:59] "GET /socket.io/?EIO=4&transport=websocket&sid=wuWf67fASj2eT65yAAAC HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:42:00] "GET /socket.io/?EIO=4&transport=polling&t=PY0x115 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:42:00] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:42:00] "GET /api/papers HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:42:00] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:42:00] "GET /api/papers HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:42:00] "GET /socket.io/?EIO=4&transport=polling&t=PY0x1Y3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:42:00] "POST /socket.io/?EIO=4&transport=polling&t=PY0x1cF&sid=1g4473nETMEBjuRmAAAH HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:42:00] "GET /socket.io/?EIO=4&transport=polling&t=PY0x1cF.0&sid=1g4473nETMEBjuRmAAAH HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:42:00] "GET /socket.io/?EIO=4&transport=polling&t=PY0x1cW&sid=1g4473nETMEBjuRmAAAH HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:42:00] "POST /socket.io/?EIO=4&transport=polling&t=PY0x1Zs&sid=f3XKgxR5Opu7q5HdAAAG HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:42:00] "GET /socket.io/?EIO=4&transport=polling&t=PY0x1Zs.0&sid=f3XKgxR5Opu7q5HdAAAG HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:47:11] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:47:21] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:47:41] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:47:52] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:48:08] "GET /socket.io/?EIO=4&transport=websocket&sid=f3XKgxR5Opu7q5HdAAAG HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:48:22] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:48:54] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:49:24] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:49:54] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:50:25] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:50:55] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:51:24] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:51:51] "GET /api/papers HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:51:54] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:52:24] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:52:55] "GET /api/training_status HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 21:53:25] "GET /api/training_status HTTP/1.1" 200 -

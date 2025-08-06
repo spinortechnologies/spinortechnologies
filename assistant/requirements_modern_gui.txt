@@ -1,0 +1,73 @@
+# SPINOR Modern Web GUI Requirements
+# Enhanced accessible web interface dependencies
+
+# Core Web Framework
+flask>=2.3.0
+flask-socketio>=5.3.0
+flask-cors>=4.0.0
+
+# Real-time Communication
+python-socketio>=5.8.0
+eventlet>=0.33.3
+
+# AI and ML Components
+langchain>=0.1.0
+sentence-transformers>=2.2.0
+transformers>=4.30.0
+torch>=2.0.0
+faiss-cpu>=1.7.4
+huggingface-hub>=0.16.0
+
+# Data Processing
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.3.0
+
+# Async and HTTP
+aiohttp>=3.8.0
+requests>=2.31.0
+asyncio-throttle>=1.0.2
+
+# Text Processing
+nltk>=3.8.0
+spacy>=3.6.0
+beautifulsoup4>=4.12.0
+
+# ArXiv Integration
+arxiv>=1.4.7
+
+# Database and Storage
+chromadb>=0.4.0
+sqlite3  # Built-in
+
+# Utility Libraries
+python-dotenv>=1.0.0
+schedule>=1.2.0
+psutil>=5.9.0
+tqdm>=4.65.0
+
+# Development and Testing
+pytest>=7.4.0
+pytest-flask>=1.2.0
+pytest-socketio>=0.0.6
+
+# Production Server (Optional)
+gunicorn>=21.2.0
+gevent>=23.7.0
+
+# Monitoring and Logging
+rich>=13.5.0
+colorama>=0.4.6
+
+# Documentation
+markdown>=3.4.0
+jinja2>=3.1.0
+
+# Security
+werkzeug>=2.3.0
+cryptography>=41.0.0
+
+# Additional Utilities
+dateutils>=0.6.12
+pathlib2>=2.3.7
+typing-extensions>=4.7.0

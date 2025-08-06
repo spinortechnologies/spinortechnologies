@@ -26,25 +26,52 @@ except ImportError:
     print("Flask not available. Install with: pip install flask flask-socketio")
     FLASK_AVAILABLE = False
 
-# Our enhanced multilingual AI agent
+# Our advanced conversational AI agent
+# Set up logging
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 try:
-    from enhanced_agent import EnhancedMultilingualAgent
+    from specialized_ai_agent import SpecializedAIAgent
+    from conversational_agent import AdvancedConversationalAgent
     from vector_db import load_vector_store
     from enhanced_papers import EnhancedPaperIntegrator
     AGENT_AVAILABLE = True
+    CONVERSATIONAL_AGENT = True
+    SPECIALIZED_AGENT = True
+    logger.info("✅ Specialized AI Agent available")
 except ImportError as e:
-    print(f"Enhanced agent not available, falling back to simple agent: {e}")
+    print(f"Specialized agent not available, falling back to conversational agent: {e}")
     try:
-        from simple_agent import SimpleQuantFinanceAgent as EnhancedMultilingualAgent
+        from conversational_agent import AdvancedConversationalAgent
         from vector_db import load_vector_store
+        from enhanced_papers import EnhancedPaperIntegrator
         AGENT_AVAILABLE = True
+        CONVERSATIONAL_AGENT = True
+        SPECIALIZED_AGENT = False
     except ImportError as e:
-        print(f"Agent not available: {e}")
-        AGENT_AVAILABLE = False
-
-# Set up logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+        print(f"Conversational agent not available, falling back to enhanced agent: {e}")
+        try:
+            from enhanced_agent import EnhancedMultilingualAgent as AdvancedConversationalAgent
+            from vector_db import load_vector_store
+            from enhanced_papers import EnhancedPaperIntegrator
+            AGENT_AVAILABLE = True
+            CONVERSATIONAL_AGENT = False
+            SPECIALIZED_AGENT = False
+        except ImportError as e:
+            print(f"Enhanced agent not available, falling back to simple agent: {e}")
+            try:
+                from simple_agent import SimpleQuantFinanceAgent as AdvancedConversationalAgent
+                from vector_db import load_vector_store
+                AGENT_AVAILABLE = True
+                CONVERSATIONAL_AGENT = False
+                SPECIALIZED_AGENT = False
+            except ImportError as e:
+                print(f"Agent not available: {e}")
+                AGENT_AVAILABLE = False
+                CONVERSATIONAL_AGENT = False
+                SPECIALIZED_AGENT = False
 
 class WebFinanceGUI:
     """Web-based GUI for the Finance AI Assistant"""
@@ -65,13 +92,43 @@ class WebFinanceGUI:
         self.create_templates()
         
     def init_agent(self):
-        """Initialize the enhanced multilingual AI agent"""
+        """Initialize the advanced conversational AI agent"""
         try:
-            if AGENT_AVAILABLE:
+            if SPECIALIZED_AGENT:
+                logger.info("🎯 Initializing Specialized AI Agent with auto-learning...")
+                self.agent = SpecializedAIAgent(domain="quantitative_finance")
+                self.paper_integrator = None  # Specialized agent has its own paper integration
+                logger.info("✅ Specialized AI Agent initialized with intelligent node management")
+                
+                # Start autonomous learning in background
+                try:
+                    import asyncio
+                    import threading
+                    
+                    def start_autonomous_learning():
+                        try:
+                            loop = asyncio.new_event_loop()
+                            asyncio.set_event_loop(loop)
+                            loop.run_until_complete(self.agent.start_autonomous_learning())
+                        except Exception as e:
+                            logger.warning(f"⚠️ Autonomous learning stopped: {e}")
+                    
+                    learning_thread = threading.Thread(target=start_autonomous_learning, daemon=True)
+                    learning_thread.start()
+                    logger.info("🧠 Autonomous learning started in background")
+                    
+                except Exception as e:
+                    logger.warning(f"⚠️ Could not start autonomous learning: {e}")
+                
+            elif AGENT_AVAILABLE:
                 self.vector_store = load_vector_store()
-                self.agent = EnhancedMultilingualAgent(self.vector_store)
+                if CONVERSATIONAL_AGENT:
+                    self.agent = AdvancedConversationalAgent(self.vector_store, personality="professional_friendly")
+                    logger.info("🤖 Advanced Conversational AI Agent initialized successfully")
+                else:
+                    self.agent = AdvancedConversationalAgent(self.vector_store)
+                    logger.info("🚀 Enhanced Multilingual AI Agent initialized successfully")
                 self.paper_integrator = EnhancedPaperIntegrator()
-                logger.info("🚀 Enhanced Multilingual AI Agent initialized successfully")
             else:
                 self.agent = self.create_mock_agent()
                 logger.info("Using mock agent (dependencies not available)")
@@ -192,12 +249,47 @@ This is a demonstration of the SPINOR Quantitative Finance AI Assistant web inte
                     'knowledge_base': True,
                     'papers_available': self.check_papers(),
                     'languages_supported': ['Spanish (es)', 'English (en)'],
-                    'features': [
+                    'conversation_active': True,
+                    'conversational_agent': CONVERSATIONAL_AGENT,
+                    'specialized_agent': SPECIALIZED_AGENT,
+                    'auto_learning': SPECIALIZED_AGENT,
+                    'intelligent_nodes': SPECIALIZED_AGENT,
+                    'capabilities': [
                         'Multilingual support',
                         'Real-time paper integration',
-                        'Enhanced knowledge base'
+                        'Enhanced knowledge base',
+                        'Conversational AI',
+                        'Context awareness',
+                        'Sentiment analysis',
+                        'Learning from feedback',
+                        'Auto-feeding from ArXiv/ResearchGate' if SPECIALIZED_AGENT else None,
+                        'Intelligent node management' if SPECIALIZED_AGENT else None,
+                        'Domain specialization' if SPECIALIZED_AGENT else None
+                    ],
+                    'features': [
+                        'Multi-turn conversations',
+                        'Personality adaptation',
+                        'Memory system',
+                        'Training capabilities',
+                        'Autonomous learning' if SPECIALIZED_AGENT else None,
+                        'Citation-based filtering' if SPECIALIZED_AGENT else None,
+                        'Redundancy elimination' if SPECIALIZED_AGENT else None
                     ]
                 }
+            
+            def get_conversation_summary(self):
+                return {
+                    'session_id': 'demo-session',
+                    'total_interactions': 0,
+                    'languages_used': ['en', 'es'],
+                    'topics_discussed': ['demo'],
+                    'user_preferences': {'preferred_language': 'en'},
+                    'sentiment_trend': 'positive'
+                }
+            
+            def provide_feedback(self, interaction_id, rating, comment=""):
+                logger.info(f"Demo feedback received: {rating}/5 - {comment}")
+                return True
             
             def check_papers(self):
                 """Check if papers are available"""
@@ -317,6 +409,125 @@ This is a demonstration of the SPINOR Quantitative Finance AI Assistant web inte
                 })
             except Exception as e:
                 return jsonify({'error': str(e)})
+        
+        @self.app.route('/api/conversation_summary')
+        def api_conversation_summary():
+            """Get conversation summary and analytics"""
+            try:
+                if hasattr(self.agent, 'get_conversation_summary'):
+                    summary = self.agent.get_conversation_summary()
+                    return jsonify(summary)
+                else:
+                    return jsonify({
+                        'message': 'Conversation summary not available',
+                        'total_interactions': len(self.conversation_history)
+                    })
+            except Exception as e:
+                return jsonify({'error': str(e)})
+        
+        @self.app.route('/api/feedback', methods=['POST'])
+        def api_feedback():
+            """Submit feedback for AI improvement"""
+            try:
+                data = request.get_json()
+                interaction_id = data.get('interaction_id', 'unknown')
+                rating = data.get('rating', 3)
+                comment = data.get('comment', '')
+                
+                if hasattr(self.agent, 'provide_feedback'):
+                    self.agent.provide_feedback(interaction_id, rating, comment)
+                
+                return jsonify({
+                    'success': True,
+                    'message': 'Feedback received successfully'
+                })
+            except Exception as e:
+                return jsonify({'error': str(e)})
+        
+        @self.app.route('/api/training_status')
+        def api_training_status():
+            """Get AI training and learning status"""
+            try:
+                if hasattr(self.agent, 'memory') and hasattr(self.agent.memory, 'learning_feedback'):
+                    feedback_count = len(self.agent.memory.learning_feedback)
+                    avg_rating = 0
+                    if feedback_count > 0:
+                        ratings = [f['rating'] for f in self.agent.memory.learning_feedback]
+                        avg_rating = sum(ratings) / len(ratings)
+                    
+                    return jsonify({
+                        'feedback_received': feedback_count,
+                        'average_rating': round(avg_rating, 2),
+                        'learning_active': True,
+                        'papers_learned': len(getattr(self.agent, 'learned_papers', [])),
+                        'conversation_length': len(self.conversation_history)
+                    })
+                else:
+                    return jsonify({
+                        'feedback_received': 0,
+                        'average_rating': 0,
+                        'learning_active': False,
+                        'papers_learned': 0,
+                        'conversation_length': len(self.conversation_history)
+                    })
+            except Exception as e:
+                return jsonify({'error': str(e)})
+        
+        @self.app.route('/api/specialized_status')
+        def api_specialized_status():
+            """Get specialized agent status and capabilities"""
+            try:
+                if SPECIALIZED_AGENT and hasattr(self.agent, 'get_agent_status'):
+                    status = self.agent.get_agent_status()
+                    return jsonify({
+                        'specialized_agent_available': True,
+                        'agent_status': status,
+                        'auto_learning_active': True,
+                        'intelligent_nodes_active': True
+                    })
+                else:
+                    return jsonify({
+                        'specialized_agent_available': False,
+                        'message': 'Using fallback conversational agent'
+                    })
+            except Exception as e:
+                return jsonify({'error': str(e)})
+        
+        @self.app.route('/api/node_statistics')
+        def api_node_statistics():
+            """Get intelligent node manager statistics"""
+            try:
+                if SPECIALIZED_AGENT and hasattr(self.agent, 'node_manager'):
+                    stats = self.agent.node_manager.get_statistics()
+                    return jsonify({
+                        'node_statistics': stats,
+                        'intelligent_management_active': True
+                    })
+                else:
+                    return jsonify({
+                        'intelligent_management_active': False,
+                        'message': 'Intelligent node management not available'
+                    })
+            except Exception as e:
+                return jsonify({'error': str(e)})
+        
+        @self.app.route('/api/feeding_statistics')
+        def api_feeding_statistics():
+            """Get auto-feeding system statistics"""
+            try:
+                if SPECIALIZED_AGENT and hasattr(self.agent, 'auto_feeding'):
+                    stats = self.agent.auto_feeding.get_feeding_stats()
+                    return jsonify({
+                        'feeding_statistics': stats,
+                        'auto_feeding_active': True
+                    })
+                else:
+                    return jsonify({
+                        'auto_feeding_active': False,
+                        'message': 'Auto-feeding system not available'
+                    })
+            except Exception as e:
+                return jsonify({'error': str(e)})
     
     def setup_socketio(self):
         """Setup SocketIO events"""
@@ -394,7 +605,7 @@ This is a demonstration of the SPINOR Quantitative Finance AI Assistant web inte
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 SPINOR Quantitative Finance AI Assistant</title>
+    <title>🤖 SPINOR Conversational AI Assistant</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js"></script>
     <style>
@@ -443,6 +654,16 @@ This is a demonstration of the SPINOR Quantitative Finance AI Assistant web inte
             font-size: 1.2em;
             color: #666;
             font-style: italic;
+        }
+        
+        .ai-status {
+            display: inline-block;
+            padding: 5px 12px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin-top: 10px;
         }
         
         .main-content {
@@ -724,9 +945,96 @@ This is a demonstration of the SPINOR Quantitative Finance AI Assistant web inte
             transition: all 0.3s ease;
         }
         
-        .refresh-btn:hover {
+        .feedback-section {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f0f7ff;
+            border-radius: 10px;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .feedback-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .feedback-btn {
+            background: none;
+            border: 2px solid #ddd;
+            padding: 5px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .feedback-btn:hover {
+            border-color: #2196f3;
+            color: #2196f3;
+        }
+        
+        .feedback-btn.selected {
+            background: #2196f3;
+            color: white;
+            border-color: #2196f3;
+        }
+        
+        .training-panel {
+            background: #e8f5e8;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .typing-indicator {
+            display: none;
+            padding: 10px 15px;
+            background: #e3f2fd;
+            border-radius: 15px;
+            color: #1976d2;
+            font-style: italic;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .typing-indicator.show {
+            display: block;
+        }
+        
+        .btn-info {
+            background: linear-gradient(135deg, #2196f3, #1976d2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-info:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+            box-shadow: 0 3px 10px rgba(33, 150, 243, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #9e9e9e, #757575);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(158, 158, 158, 0.4);
+        }
+        
+        .chat-controls {
+            display: flex;
+            align-items: center;
         }
         
         @media (max-width: 768px) {
@@ -756,45 +1064,73 @@ This is a demonstration of the SPINOR Quantitative Finance AI Assistant web inte
         </div>
         
         <div class="main-content">
+            <!-- AI Status Indicator -->
+            <div class="ai-status" id="ai-status">
+                <div class="status-indicator online" id="status-dot"></div>
+                <span id="status-text">🤖 Conversational AI Online - Ready to Chat</span>
+            </div>
+            
             <div class="chat-panel">
                 <div class="chat-header">
-                    <h2>💬 Conversation</h2>
-                    <button class="clear-btn" onclick="clearConversation()">🗑️ Clear</button>
+                    <h2>💬 Advanced Conversational AI</h2>
+                    <div class="chat-controls">
+                        <button class="clear-btn" onclick="clearConversation()">🗑️ Clear</button>
+                        <button class="btn-info" onclick="showConversationSummary()">📊 Summary</button>
+                        <button class="btn-secondary" onclick="showTrainingStatus()">🧠 Training</button>
+                    </div>
                 </div>
                 
                 <div class="conversation" id="conversation">
                     <div class="message ai-message">
-                        <div class="message-header">[System] 🤖 SPINOR AI</div>
-                        <div class="message-content">Welcome to the SPINOR Quantitative Finance AI Assistant! 
+                        <div class="message-header">[System] 🤖 SPINOR Conversational AI</div>
+                        <div class="message-content">¡Hola! Welcome to your advanced conversational AI assistant! 
 
-I'm here to help you with:
-• Mathematical finance and stochastic calculus
-• Options pricing and derivatives
-• Risk management and portfolio theory
-• Quantitative trading strategies
-• Market analysis and research
+I'm designed for human-like conversations and can help you with:
+• 🧠 Natural, context-aware conversations in Spanish or English
+• 📚 Real-time learning from ArXiv papers
+• 📊 Quantitative finance and mathematical analysis
+• 💡 Adaptive responses based on your preferences
+• 🎯 Continuous learning from your feedback
 
-Ask me anything about quantitative finance!</div>
+I remember our conversation context and adapt to your communication style. Let's have a natural conversation!</div>
                     </div>
+                </div>
+                
+                <!-- Typing Indicator -->
+                <div class="typing-indicator" id="typing-indicator">
+                    🤖 AI is thinking and analyzing...
                 </div>
                 
                 <div class="progress" id="progress"></div>
                 
+                <!-- Feedback Section -->
+                <div class="feedback-section" id="feedback-section" style="display: none;">
+                    <h4>📝 How was this conversation?</h4>
+                    <div class="feedback-buttons">
+                        <button class="feedback-btn" onclick="submitFeedback('excellent', 5)">😍 Excellent</button>
+                        <button class="feedback-btn" onclick="submitFeedback('good', 4)">😊 Good</button>
+                        <button class="feedback-btn" onclick="submitFeedback('average', 3)">😐 Average</button>
+                        <button class="feedback-btn" onclick="submitFeedback('poor', 2)">😞 Poor</button>
+                    </div>
+                    <textarea id="feedback-comment" placeholder="Optional: Tell me how I can improve..." 
+                              style="width: 100%; margin-top: 10px; padding: 8px; border-radius: 5px; border: 1px solid #ddd;"></textarea>
+                </div>
+                
                 <div class="input-section">
                     <div class="suggestions">
-                        <button class="suggestion-btn" onclick="setQuery('Black-Scholes Model')">📊 Black-Scholes</button>
-                        <button class="suggestion-btn" onclick="setQuery('Value at Risk')">⚠️ VaR</button>
-                        <button class="suggestion-btn" onclick="setQuery('Portfolio Optimization')">📈 Portfolio</button>
-                        <button class="suggestion-btn" onclick="setQuery('¿Qué es el modelo Black-Scholes?')">🇪🇸 Black-Scholes</button>
-                        <button class="suggestion-btn" onclick="setQuery('Gestión de riesgos financieros')">🇪🇸 Riesgos</button>
-                        <button class="suggestion-btn" onclick="setQuery('Optimización de portafolios')">🇪🇸 Portafolios</button>
+                        <button class="suggestion-btn" onclick="setQuery('Hi! Can you explain Black-Scholes in simple terms?')">� Casual Chat</button>
+                        <button class="suggestion-btn" onclick="setQuery('What are your thoughts on current market volatility?')">🤔 AI Opinion</button>
+                        <button class="suggestion-btn" onclick="setQuery('¿Cómo puedes ayudarme hoy?')">🇪🇸 Spanish Chat</button>
+                        <button class="suggestion-btn" onclick="setQuery('Tell me about yourself and your capabilities')">🤖 About You</button>
+                        <button class="suggestion-btn" onclick="setQuery('Can you learn from our conversation?')">🧠 Learning</button>
+                        <button class="suggestion-btn" onclick="setQuery('What papers have you read recently?')">📚 Recent Learning</button>
                     </div>
                     
                     <div class="input-row">
                         <input type="text" class="query-input" id="queryInput" 
-                               placeholder="Ask in English or Spanish / Pregunta en inglés o español..."
+                               placeholder="Chat naturally with me in English or Spanish... / Chatea naturalmente conmigo en inglés o español..."
                                onkeypress="handleKeyPress(event)">
-                        <button class="send-btn" id="sendBtn" onclick="sendQuery()">🚀 Send</button>
+                        <button class="send-btn" id="sendBtn" onclick="sendQuery()">� Chat</button>
                     </div>
                 </div>
             </div>
@@ -832,17 +1168,35 @@ Ask me anything about quantitative finance!</div>
                 </div>
                 
                 <div class="panel">
-                    <h3>🧠 Enhanced AI Capabilities</h3>
+                    <h3>🧠 Conversational AI Capabilities</h3>
                     <ul class="capabilities-list">
+                        <li>💬 Human-like conversations</li>
+                        <li>🧠 Context awareness & memory</li>
                         <li>🌐 Multilingual Support (ES/EN)</li>
-                        <li>📊 Stochastic Calculus & SDEs</li>
-                        <li>📈 Options Pricing Models</li>
-                        <li>⚠️ Risk Management (VaR, ES)</li>
-                        <li>💼 Portfolio Optimization</li>
-                        <li>🔄 Market Microstructure</li>
-                        <li>🤖 Quantitative Trading</li>
-                        <li>📚 Real-time Paper Learning</li>
+                        <li>� Sentiment analysis & adaptation</li>
+                        <li>🎯 Personality matching</li>
+                        <li>📚 Real-time paper learning</li>
+                        <li>� Continuous improvement from feedback</li>
+                        <li>📊 Quantitative finance expertise</li>
                     </ul>
+                </div>
+                
+                <!-- Training Status Panel -->
+                <div class="panel training-panel">
+                    <h3>🎓 AI Training Status</h3>
+                    <div class="status-item">
+                        <span class="status-label">Conversations:</span>
+                        <span id="conversationCount">0</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Feedback Score:</span>
+                        <span id="avgRating">No feedback yet</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Papers Learned:</span>
+                        <span id="papersLearned">0</span>
+                    </div>
+                    <button class="refresh-btn" onclick="refreshTrainingStatus()">🔄 Update Status</button>
                 </div>
             </div>
         </div>
@@ -856,6 +1210,10 @@ Ask me anything about quantitative finance!</div>
         document.addEventListener('DOMContentLoaded', function() {
             refreshStatus();
             refreshPapers();
+            refreshTrainingStatus();
+            
+            // Auto-refresh training status every 30 seconds
+            setInterval(refreshTrainingStatus, 30000);
         });
         
         // Socket events
@@ -903,10 +1261,18 @@ Ask me anything about quantitative finance!</div>
             
             const sendBtn = document.getElementById('sendBtn');
             sendBtn.disabled = true;
-            sendBtn.textContent = '⏳ Processing...';
+            sendBtn.textContent = '🤖 Thinking...';
+            
+            // Show typing indicator
+            document.getElementById('typing-indicator').classList.add('show');
             
             addMessage('user', query);
             socket.emit('query', {query: query});
+            
+            // Show feedback section after response
+            setTimeout(() => {
+                document.getElementById('feedback-section').style.display = 'block';
+            }, 2000);
         }
         
         function addMessage(sender, content, timestamp = null) {
@@ -941,11 +1307,109 @@ Ask me anything about quantitative finance!</div>
             const progress = document.getElementById('progress');
             progress.classList.remove('show');
             
+            const typingIndicator = document.getElementById('typing-indicator');
+            typingIndicator.classList.remove('show');
+            
             const sendBtn = document.getElementById('sendBtn');
             sendBtn.disabled = false;
-            sendBtn.textContent = '🚀 Send';
+            sendBtn.textContent = '� Chat';
             
             isProcessing = false;
+        }
+        
+        // New conversational AI functions
+        function showConversationSummary() {
+            fetch('/api/conversation_summary')
+                .then(response => response.json())
+                .then(data => {
+                    const summary = `
+📊 Conversation Summary:
+• Total interactions: ${data.total_interactions || 0}
+• Languages used: ${(data.languages_used || []).join(', ')}
+• Topics discussed: ${(data.topics_discussed || []).join(', ')}
+• Sentiment trend: ${data.sentiment_trend || 'neutral'}
+• Session ID: ${data.session_id || 'unknown'}
+                    `;
+                    addMessage('system', summary);
+                })
+                .catch(error => {
+                    console.error('Summary failed:', error);
+                    addMessage('error', 'Failed to get conversation summary');
+                });
+        }
+        
+        function submitFeedback(type, rating) {
+            const comment = document.getElementById('feedback-comment').value;
+            const interactionId = Date.now().toString();
+            
+            fetch('/api/feedback', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    interaction_id: interactionId,
+                    rating: rating,
+                    comment: comment
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Visual feedback
+                    const buttons = document.querySelectorAll('.feedback-btn');
+                    buttons.forEach(btn => btn.classList.remove('selected'));
+                    event.target.classList.add('selected');
+                    
+                    addMessage('system', `✅ Thank you for your feedback! (${type} - ${rating}/5) I'll use this to improve our conversations.`);
+                    
+                    // Hide feedback section after a delay
+                    setTimeout(() => {
+                        document.getElementById('feedback-section').style.display = 'none';
+                        document.getElementById('feedback-comment').value = '';
+                    }, 3000);
+                }
+            })
+            .catch(error => {
+                console.error('Feedback failed:', error);
+                addMessage('error', 'Failed to submit feedback');
+            });
+        }
+        
+        function showTrainingStatus() {
+            fetch('/api/training_status')
+                .then(response => response.json())
+                .then(data => {
+                    const status = `
+🎓 AI Training Status:
+• Feedback received: ${data.feedback_received || 0} interactions
+• Average rating: ${data.average_rating || 0}/5 ⭐
+• Papers learned from: ${data.papers_learned || 0}
+• Total conversations: ${data.conversation_length || 0}
+• Learning active: ${data.learning_active ? '✅ Yes' : '❌ No'}
+
+I'm continuously learning and improving from our interactions!
+                    `;
+                    addMessage('system', status);
+                })
+                .catch(error => {
+                    console.error('Training status failed:', error);
+                    addMessage('error', 'Failed to get training status');
+                });
+        }
+        
+        function refreshTrainingStatus() {
+            fetch('/api/training_status')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('conversationCount').textContent = data.conversation_length || 0;
+                    document.getElementById('avgRating').textContent = 
+                        data.average_rating ? `${data.average_rating}/5 ⭐` : 'No feedback yet';
+                    document.getElementById('papersLearned').textContent = data.papers_learned || 0;
+                })
+                .catch(error => {
+                    console.error('Training status update failed:', error);
+                });
         }
         
         function clearConversation() {
@@ -1080,6 +1544,119 @@ Ask me anything about quantitative finance!</div>
             
             conversation.appendChild(messageDiv);
             conversation.scrollTop = conversation.scrollHeight;
+        }
+        
+        // New specialized agent functions
+        function showSpecializedStatus() {
+            fetch('/api/specialized_status')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.specialized_agent_available) {
+                        const status = data.agent_status;
+                        const statusMessage = `
+🎯 **Specialized AI Agent Status**
+
+**Agent Information:**
+• Domain: ${status.agent_info?.domain || 'Unknown'}
+• Name: ${status.agent_info?.name || 'Unknown'}
+• Expertise Level: ${status.agent_info?.expertise_level || 0}/5.0 ⭐
+• Queries Processed: ${status.agent_info?.queries_processed || 0}
+
+**Knowledge Base:**
+• Total Nodes: ${status.knowledge_base?.total_nodes || 0}
+• Total Citations: ${status.knowledge_base?.total_citations || 0}
+• Knowledge Sources: ${Object.keys(status.knowledge_base?.knowledge_sources || {}).join(', ')}
+
+**Auto-Learning:**
+• Papers Processed: ${status.auto_learning?.papers_processed || 0}
+• Papers Added: ${status.auto_learning?.papers_added || 0}
+• Last Feeding: ${status.auto_learning?.last_feeding ? new Date(status.auto_learning.last_feeding).toLocaleString() : 'Never'}
+
+**Performance:**
+• Accuracy: ${(status.performance?.accuracy_score || 0) * 100}%
+• User Satisfaction: ${(status.performance?.user_satisfaction || 0) * 100}%
+• Response Relevance: ${(status.performance?.response_relevance || 0) * 100}%
+
+🚀 Sistema de aprendizaje autónomo activo con gestión inteligente de nodos!
+                        `;
+                        addMessage('system', statusMessage);
+                    } else {
+                        addMessage('system', '⚠️ Specialized agent not available. Using fallback conversational agent.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Specialized status failed:', error);
+                    addMessage('error', 'Failed to get specialized agent status');
+                });
+        }
+        
+        function showNodeStatistics() {
+            fetch('/api/node_statistics')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.intelligent_management_active) {
+                        const stats = data.node_statistics;
+                        const statsMessage = `
+🧠 **Intelligent Node Management Statistics**
+
+• Total Nodes: ${stats.total_nodes || 0}
+• Total Citations: ${stats.total_citations || 0}
+• Average Citations: ${stats.average_citations || 0}
+• Storage Efficiency: ${stats.storage_efficiency || 'Unknown'}
+
+**Source Distribution:**
+${Object.entries(stats.source_distribution || {}).map(([source, count]) => `• ${source}: ${count} nodes`).join('\\n')}
+
+**Top Concepts:**
+${(stats.top_concepts || []).slice(0, 5).map(([concept, count]) => `• ${concept}: ${count} papers`).join('\\n')}
+
+Last Cleanup: ${stats.last_cleanup ? new Date(stats.last_cleanup).toLocaleString() : 'Never'}
+                        `;
+                        addMessage('system', statsMessage);
+                    } else {
+                        addMessage('system', '⚠️ Intelligent node management not available.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Node statistics failed:', error);
+                    addMessage('error', 'Failed to get node statistics');
+                });
+        }
+        
+        function showFeedingStatistics() {
+            fetch('/api/feeding_statistics')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.auto_feeding_active) {
+                        const stats = data.feeding_statistics;
+                        const feedingMessage = `
+🔄 **Auto-Feeding System Statistics**
+
+• Total Papers Processed: ${stats.total_papers_processed || 0}
+• Papers Added: ${stats.papers_added || 0}
+• Papers Rejected: ${stats.papers_rejected || 0}
+• Feeding Interval: ${stats.feeding_interval_hours || 0} hours
+• Next Feeding: ${stats.next_feeding_in_hours ? `${Math.round(stats.next_feeding_in_hours)} hours` : 'Unknown'}
+
+**Sources:**
+${Object.entries(stats.sources || {}).map(([source, count]) => `• ${source}: ${count} papers`).join('\\n')}
+
+**Category Distribution:**
+${Object.entries(stats.categories_distribution || {}).slice(0, 5).map(([cat, count]) => `• ${cat}: ${count} papers`).join('\\n')}
+
+Last Feeding: ${stats.last_feeding ? new Date(stats.last_feeding).toLocaleString() : 'Never'}
+
+🚀 Sistema alimentándose automáticamente de ArXiv y ResearchGate!
+                        `;
+                        addMessage('system', feedingMessage);
+                    } else {
+                        addMessage('system', '⚠️ Auto-feeding system not available.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Feeding statistics failed:', error);
+                    addMessage('error', 'Failed to get feeding statistics');
+                });
         }
     </script>
 </body>

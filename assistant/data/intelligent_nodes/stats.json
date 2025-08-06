@@ -1,0 +1,29 @@
+{
+  "total_nodes": 2,
+  "total_citations": 68,
+  "average_citations": 34.0,
+  "source_distribution": {
+    "arxiv": 1,
+    "researchgate": 1
+  },
+  "top_concepts": [
+    [
+      "black-scholes",
+      1
+    ],
+    [
+      "option pricing",
+      1
+    ],
+    [
+      "stochastic calculus",
+      1
+    ],
+    [
+      "monte carlo",
+      1
+    ]
+  ],
+  "last_cleanup": "2025-08-06T21:23:09.110832",
+  "storage_efficiency": "2/5000 (0.0%)"
+}

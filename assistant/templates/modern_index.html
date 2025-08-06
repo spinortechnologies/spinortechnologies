@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SPINOR AI - Advanced Quantitative Finance Assistant with Real-time Research Integration">
+    <meta name="theme-color" content="#667eea">
+    <title>🚀 SPINOR AI - Quantitative Finance Assistant</title>
+    
+    <!-- External Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.min.js" defer></script>
+    
+    <!-- Accessibility and SEO -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Modern CSS Reset and Base Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        :root {
+            /* Design System - Color Palette */
+            --primary-50: #f0f9ff;
+            --primary-100: #e0f2fe;
+            --primary-500: #667eea;
+            --primary-600: #5a67d8;
+            --primary-700: #4c51bf;
+            --primary-900: #2d3748;
+            
+            --secondary-500: #764ba2;
+            --secondary-600: #6b46c1;
+            
+            --success-500: #10b981;
+            --warning-500: #f59e0b;
+            --error-500: #ef4444;
+            
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-500: #6b7280;
+            --gray-700: #374151;
+            --gray-900: #111827;
+            
+            /* Typography */
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+            
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            
+            /* Transitions */
+            --transition-fast: 150ms ease-in-out;
+            --transition-normal: 250ms ease-in-out;
+            --transition-slow: 350ms ease-in-out;
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --gray-50: #1f2937;
+                --gray-100: #374151;
+                --gray-200: #4b5563;
+                --gray-300: #6b7280;
+                --gray-900: #f9fafb;
+            }
+        }
+        
+        html {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--primary-500) 0%, var(--secondary-500) 100%);
+            color: var(--gray-900);
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Focus visible for better keyboard navigation */
+        *:focus-visible {
+            outline: 2px solid var(--primary-500);
+            outline-offset: 2px;
+        }
+        
+        /* Skip link for screen readers */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--gray-900);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 100;
+            border-radius: var(--radius-md);
+        }
+        
+        .skip-link:focus {
+            top: 6px;
+        }
+        
+        /* Main Layout */
+        .app-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-4);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-8);
+        }
+        
+        /* Header Section */
+        .app-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            text-align: center;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .app-title {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: var(--space-4);
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .app-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--gray-500);
+            margin-bottom: var(--space-6);
+            font-weight: 400;
+        }
+        
+        .status-indicators {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-xl);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            transition: var(--transition-normal);
+        }
+        
+        .status-badge.online {
+            background: linear-gradient(135deg, var(--success-500), #059669);
+            color: white;
+        }
+        
+        .status-badge.processing {
+            background: linear-gradient(135deg, var(--warning-500), #d97706);
+            color: white;
+        }
+        
+        /* Main Content Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: var(--space-8);
+            flex: 1;
+        }
+        
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-6);
+            }
+        }
+        
+        /* Chat Panel */
+        .chat-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-2xl);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            flex-direction: column;
+            min-height: 600px;
+        }
+        
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-6);
+            border-bottom: 1px solid var(--gray-200);
+            border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+        }
+        
+        .chat-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        
+        .chat-actions {
+            display: flex;
+            gap: var(--space-2);
+        }
+        
+        /* Messages Container */
+        .messages-container {
+            flex: 1;
+            padding: var(--space-6);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+            max-height: 500px;
+            scroll-behavior: smooth;
+        }
+        
+        .message {
+            display: flex;
+            gap: var(--space-3);
+            max-width: 85%;
+            animation: fadeInUp 0.3s ease-out;
+        }
+        
+        .message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+        
+        .message.ai {
+            align-self: flex-start;
+        }
+        
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            flex-shrink: 0;
+        }
+        
+        .message.user .message-avatar {
+            background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+            color: white;
+        }
+        
+        .message.ai .message-avatar {
+            background: linear-gradient(135deg, var(--secondary-500), var(--secondary-600));
+            color: white;
+        }
+        
+        .message-content {
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            max-width: 100%;
+            word-wrap: break-word;
+            line-height: 1.6;
+        }
+        
+        .message.user .message-content {
+            background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+            color: white;
+            border-bottom-right-radius: var(--radius-sm);
+        }
+        
+        .message.ai .message-content {
+            background: var(--gray-50);
+            color: var(--gray-900);
+            border: 1px solid var(--gray-200);
+            border-bottom-left-radius: var(--radius-sm);
+        }
+        
+        /* Input Section */
+        .chat-input-section {
+            padding: var(--space-6);
+            border-top: 1px solid var(--gray-200);
+            border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
+        }
+        
+        .chat-input-form {
+            display: flex;
+            gap: var(--space-3);
+            align-items: end;
+        }
+        
+        .input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+        
+        .chat-input {
+            width: 100%;
+            min-height: 60px;
+            max-height: 120px;
+            padding: var(--space-4);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-xl);
+            font-size: var(--font-size-base);
+            font-family: inherit;
+            resize: none;
+            transition: var(--transition-normal);
+            background: white;
+        }
+        
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--primary-500);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        /* Sidebar Panel */
+        .sidebar-panel {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+        }
+        
+        .panel-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-2xl);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+        }
+        
+        .panel-header {
+            padding: var(--space-6);
+            border-bottom: 1px solid var(--gray-200);
+            background: linear-gradient(135deg, var(--gray-50), white);
+        }
+        
+        .panel-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--space-2);
+        }
+        
+        .panel-content {
+            padding: var(--space-6);
+        }
+        
+        /* Filters Section */
+        .filters-section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+        
+        .filter-label {
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+        
+        .filter-select, .filter-input {
+            padding: var(--space-3);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            transition: var(--transition-normal);
+            background: white;
+        }
+        
+        .filter-select:focus, .filter-input:focus {
+            outline: none;
+            border-color: var(--primary-500);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-top: var(--space-2);
+        }
+        
+        .filter-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-1);
+            padding: var(--space-1) var(--space-3);
+            background: var(--primary-100);
+            color: var(--primary-700);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-xs);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .filter-tag:hover {
+            background: var(--primary-200);
+        }
+        
+        .filter-tag.active {
+            background: var(--primary-500);
+            color: white;
+        }
+        
+        /* Statistics Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-4);
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: var(--space-4);
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .stat-value {
+            display: block;
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--primary-600);
+            margin-bottom: var(--space-1);
+        }
+        
+        .stat-label {
+            font-size: var(--font-size-xs);
+            color: var(--gray-500);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Papers List */
+        .papers-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .paper-item {
+            padding: var(--space-3);
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+            transition: var(--transition-normal);
+            cursor: pointer;
+        }
+        
+        .paper-item:hover {
+            background: var(--primary-50);
+            border-color: var(--primary-200);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .paper-title {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--space-1);
+            line-height: 1.4;
+        }
+        
+        .paper-meta {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            gap: var(--space-2);
+            margin-top: var(--space-2);
+        }
+        
+        .paper-authors {
+            font-size: var(--font-size-xs);
+            color: var(--gray-500);
+            flex: 1;
+        }
+        
+        .paper-citations {
+            font-size: var(--font-size-xs);
+            color: var(--primary-600);
+            font-weight: 500;
+            background: var(--primary-100);
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-sm);
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            min-height: 44px; /* Accessibility: minimum touch target */
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+            color: white;
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-secondary {
+            background: var(--gray-200);
+            color: var(--gray-700);
+        }
+        
+        .btn-secondary:hover:not(:disabled) {
+            background: var(--gray-300);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, var(--error-500), #dc2626);
+            color: white;
+        }
+        
+        .btn-danger:hover:not(:disabled) {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .btn-sm {
+            padding: var(--space-2) var(--space-4);
+            font-size: var(--font-size-xs);
+            min-height: 36px;
+        }
+        
+        /* Loading states */
+        .loading {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            to {
+                left: 100%;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        .typing-indicator {
+            display: none;
+            padding: var(--space-4);
+            background: var(--primary-100);
+            color: var(--primary-700);
+            border-radius: var(--radius-lg);
+            font-style: italic;
+            animation: pulse 1.5s infinite;
+            border: 1px solid var(--primary-200);
+        }
+        
+        .typing-indicator.show {
+            display: block;
+        }
+        
+        /* Search and Filter Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-normal);
+        }
+        
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal {
+            background: white;
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            max-width: 600px;
+            width: 90vw;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            transform: scale(0.9) translateY(20px);
+            transition: var(--transition-normal);
+        }
+        
+        .modal-overlay.show .modal {
+            transform: scale(1) translateY(0);
+        }
+        
+        /* Progress indicators */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--gray-200);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            border-radius: var(--radius-sm);
+            transition: width var(--transition-normal);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .app-container {
+                padding: var(--space-2);
+                gap: var(--space-4);
+            }
+            
+            .app-header {
+                padding: var(--space-4);
+            }
+            
+            .app-title {
+                font-size: var(--font-size-2xl);
+            }
+            
+            .app-subtitle {
+                font-size: var(--font-size-base);
+            }
+            
+            .status-indicators {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .chat-panel, .panel-card {
+                margin: 0;
+            }
+            
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .sidebar-panel,
+            .chat-input-section,
+            .btn {
+                display: none;
+            }
+            
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary-500: #0000ff;
+                --gray-200: #000000;
+                --gray-700: #ffffff;
+            }
+            
+            .message.ai .message-content {
+                border: 2px solid #000000;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Skip to main content for screen readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <div class="app-container" x-data="spinorApp()" x-init="init()">
+        <!-- Header Section -->
+        <header class="app-header" role="banner">
+            <h1 class="app-title">
+                🚀 SPINOR AI Assistant
+            </h1>
+            <p class="app-subtitle">
+                Advanced Quantitative Finance Research Platform
+            </p>
+            
+            <div class="status-indicators" role="region" aria-label="System Status">
+                <div class="status-badge online" x-show="systemStatus.connected">
+                    <span class="sr-only">System Status:</span>
+                    🟢 AI Assistant Online
+                </div>
+                <div class="status-badge processing" x-show="systemStatus.autoFeeding">
+                    <span class="sr-only">Auto Feeding Status:</span>
+                    🔄 Auto-Feeding Active
+                </div>
+                <div class="status-badge online" x-show="systemStatus.vectorDb">
+                    <span class="sr-only">Database Status:</span>
+                    🧠 <span x-text="systemStatus.nodeCount"></span> Knowledge Nodes
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Grid -->
+        <div class="main-grid">
+            <!-- Chat Panel -->
+            <main class="chat-panel" id="main-content" role="main">
+                <header class="chat-header">
+                    <h2 class="chat-title">AI Chat Assistant</h2>
+                    <div class="chat-actions">
+                        <button 
+                            class="btn btn-secondary btn-sm" 
+                            @click="clearChat()"
+                            :disabled="messages.length === 0"
+                            aria-label="Clear chat history"
+                        >
+                            🗑️ Clear
+                        </button>
+                        <button 
+                            class="btn btn-secondary btn-sm" 
+                            @click="showFilters = !showFilters"
+                            aria-label="Toggle advanced filters"
+                        >
+                            🔍 Filters
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Messages Container -->
+                <div 
+                    class="messages-container" 
+                    x-ref="messagesContainer"
+                    role="log" 
+                    aria-live="polite"
+                    aria-label="Chat conversation"
+                >
+                    <!-- Welcome Message -->
+                    <div class="message ai" x-show="messages.length === 0">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <p><strong>¡Hola! I'm your SPINOR AI Assistant</strong> 🚀</p>
+                            <p>I specialize in quantitative finance, algorithmic trading, and real-time research analysis. I can help you with:</p>
+                            <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                                <li>📊 Financial modeling and risk analysis</li>
+                                <li>🔬 Latest research from ArXiv and academic sources</li>
+                                <li>💹 Trading strategies and portfolio optimization</li>
+                                <li>🧮 Mathematical finance and derivatives pricing</li>
+                                <li>🌐 Multilingual support (English/Spanish)</li>
+                            </ul>
+                            <p><em>What would you like to explore today?</em></p>
+                        </div>
+                    </div>
+
+                    <!-- Chat Messages -->
+                    <template x-for="message in messages" :key="message.id">
+                        <div class="message" :class="message.type">
+                            <div class="message-avatar" x-text="message.type === 'user' ? '👤' : '🤖'"></div>
+                            <div class="message-content" x-html="formatMessage(message.content)"></div>
+                        </div>
+                    </template>
+
+                    <!-- Typing Indicator -->
+                    <div class="typing-indicator" :class="{'show': isTyping}">
+                        🤖 SPINOR AI is thinking...
+                    </div>
+                </div>
+
+                <!-- Chat Input -->
+                <footer class="chat-input-section">
+                    <form class="chat-input-form" @submit.prevent="sendMessage()">
+                        <div class="input-wrapper">
+                            <label for="chat-input" class="sr-only">Enter your message</label>
+                            <textarea
+                                id="chat-input"
+                                class="chat-input"
+                                x-model="currentMessage"
+                                @keydown.enter.prevent="sendMessage()"
+                                @keydown.shift.enter.prevent="currentMessage += '\n'"
+                                placeholder="Ask about quantitative finance, trading strategies, or request research analysis..."
+                                :disabled="isTyping"
+                                rows="2"
+                            ></textarea>
+                        </div>
+                        <button 
+                            type="submit"
+                            class="btn btn-primary"
+                            :disabled="!currentMessage.trim() || isTyping"
+                            aria-label="Send message"
+                        >
+                            <span x-show="!isTyping">📤 Send</span>
+                            <span x-show="isTyping">⏳ Wait</span>
+                        </button>
+                    </form>
+                </footer>
+            </main>
+
+            <!-- Sidebar Panel -->
+            <aside class="sidebar-panel" role="complementary" aria-label="System Information and Controls">
+                
+                <!-- System Statistics -->
+                <section class="panel-card">
+                    <header class="panel-header">
+                        <h3 class="panel-title">📊 System Statistics</h3>
+                        <p style="font-size: var(--font-size-sm); color: var(--gray-500);">Real-time system metrics</p>
+                    </header>
+                    <div class="panel-content">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-value" x-text="stats.totalNodes">-</span>
+                                <span class="stat-label">Knowledge Nodes</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value" x-text="stats.totalPapers">-</span>
+                                <span class="stat-label">Research Papers</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value" x-text="stats.avgCitations">-</span>
+                                <span class="stat-label">Avg Citations</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value" x-text="stats.redundancyRatio + '%'">-</span>
+                                <span class="stat-label">Efficiency</span>
+                            </div>
+                        </div>
+                        <button 
+                            class="btn btn-secondary btn-sm" 
+                            style="width: 100%; margin-top: var(--space-4);"
+                            @click="refreshStats()"
+                            :disabled="isRefreshing"
+                        >
+                            <span x-show="!isRefreshing">🔄 Refresh Stats</span>
+                            <span x-show="isRefreshing">⏳ Updating...</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Research Filters -->
+                <section class="panel-card">
+                    <header class="panel-header">
+                        <h3 class="panel-title">🔍 Research Filters</h3>
+                        <p style="font-size: var(--font-size-sm); color: var(--gray-500);">Filter knowledge base content</p>
+                    </header>
+                    <div class="panel-content">
+                        <div class="filters-section">
+                            <!-- Source Filter -->
+                            <div class="filter-group">
+                                <label for="source-filter" class="filter-label">Source</label>
+                                <select id="source-filter" class="filter-select" x-model="filters.source">
+                                    <option value="">All Sources</option>
+                                    <option value="arxiv">ArXiv Papers</option>
+                                    <option value="researchgate">ResearchGate</option>
+                                    <option value="manual">Manual Input</option>
+                                </select>
+                            </div>
+
+                            <!-- Category Filter -->
+                            <div class="filter-group">
+                                <label for="category-filter" class="filter-label">Category</label>
+                                <select id="category-filter" class="filter-select" x-model="filters.category">
+                                    <option value="">All Categories</option>
+                                    <option value="q-fin.CP">Computational Finance</option>
+                                    <option value="q-fin.PM">Portfolio Management</option>
+                                    <option value="q-fin.RM">Risk Management</option>
+                                    <option value="q-fin.TR">Trading</option>
+                                    <option value="q-fin.MF">Mathematical Finance</option>
+                                    <option value="q-fin.PR">Pricing</option>
+                                </select>
+                            </div>
+
+                            <!-- Citation Filter -->
+                            <div class="filter-group">
+                                <label for="citation-filter" class="filter-label">Minimum Citations</label>
+                                <input 
+                                    type="number" 
+                                    id="citation-filter"
+                                    class="filter-input" 
+                                    x-model="filters.minCitations"
+                                    min="0"
+                                    placeholder="e.g., 10"
+                                >
+                            </div>
+
+                            <!-- Date Range Filter -->
+                            <div class="filter-group">
+                                <label for="date-filter" class="filter-label">Date Range</label>
+                                <select id="date-filter" class="filter-select" x-model="filters.dateRange">
+                                    <option value="">Any Time</option>
+                                    <option value="7">Last Week</option>
+                                    <option value="30">Last Month</option>
+                                    <option value="90">Last 3 Months</option>
+                                    <option value="365">Last Year</option>
+                                </select>
+                            </div>
+
+                            <!-- Quick Filter Tags -->
+                            <div class="filter-group">
+                                <span class="filter-label">Quick Filters</span>
+                                <div class="filter-tags">
+                                    <template x-for="tag in quickFilters" :key="tag.id">
+                                        <button 
+                                            class="filter-tag"
+                                            :class="{'active': activeFilters.includes(tag.id)}"
+                                            @click="toggleQuickFilter(tag.id)"
+                                        >
+                                            <span x-text="tag.label"></span>
+                                            <span x-show="activeFilters.includes(tag.id)">×</span>
+                                        </button>
+                                    </template>
+                                </div>
+                            </div>
+
+                            <button 
+                                class="btn btn-primary btn-sm" 
+                                style="width: 100%;"
+                                @click="applyFilters()"
+                            >
+                                🔍 Apply Filters
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recent Papers -->
+                <section class="panel-card">
+                    <header class="panel-header">
+                        <h3 class="panel-title">📚 Recent Papers</h3>
+                        <p style="font-size: var(--font-size-sm); color: var(--gray-500);">Latest research additions</p>
+                    </header>
+                    <div class="panel-content">
+                        <div class="papers-list">
+                            <template x-for="paper in recentPapers" :key="paper.id">
+                                <article class="paper-item" @click="selectPaper(paper)">
+                                    <h4 class="paper-title" x-text="paper.title"></h4>
+                                    <div class="paper-meta">
+                                        <span class="paper-authors" x-text="paper.authors"></span>
+                                        <span class="paper-citations" x-text="paper.citations + ' citations'"></span>
+                                    </div>
+                                </article>
+                            </template>
+                            
+                            <div x-show="recentPapers.length === 0" style="text-align: center; color: var(--gray-500); padding: var(--space-4);">
+                                <p>📄 No papers loaded yet</p>
+                                <p style="font-size: var(--font-size-sm);">Auto-feeding will populate this section</p>
+                            </div>
+                        </div>
+                        
+                        <button 
+                            class="btn btn-secondary btn-sm" 
+                            style="width: 100%; margin-top: var(--space-4);"
+                            @click="loadMorePapers()"
+                        >
+                            📚 Load More Papers
+                        </button>
+                    </div>
+                </section>
+
+                <!-- System Controls -->
+                <section class="panel-card">
+                    <header class="panel-header">
+                        <h3 class="panel-title">⚙️ System Controls</h3>
+                    </header>
+                    <div class="panel-content" style="display: flex; flex-direction: column; gap: var(--space-3);">
+                        <button 
+                            class="btn btn-primary btn-sm"
+                            @click="triggerAutoFeeding()"
+                            :disabled="systemStatus.feeding"
+                        >
+                            <span x-show="!systemStatus.feeding">🔄 Trigger Auto-Feeding</span>
+                            <span x-show="systemStatus.feeding">⏳ Feeding Active...</span>
+                        </button>
+                        
+                        <button 
+                            class="btn btn-secondary btn-sm"
+                            @click="cleanupNodes()"
+                        >
+                            🧹 Cleanup Redundant Nodes
+                        </button>
+                        
+                        <button 
+                            class="btn btn-secondary btn-sm"
+                            @click="exportData()"
+                        >
+                            💾 Export Knowledge Base
+                        </button>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Advanced Filters Modal -->
+    <div class="modal-overlay" :class="{'show': showFilters}" @click.self="showFilters = false">
+        <div class="modal" role="dialog" aria-labelledby="filters-modal-title" aria-modal="true">
+            <header style="margin-bottom: var(--space-6);">
+                <h2 id="filters-modal-title" style="font-size: var(--font-size-xl); margin-bottom: var(--space-2);">🔍 Advanced Research Filters</h2>
+                <p style="color: var(--gray-500);">Fine-tune your research scope and focus</p>
+            </header>
+            
+            <!-- Advanced filter content would go here -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
+                <!-- More detailed filter options -->
+                <div>
+                    <h3 style="margin-bottom: var(--space-3);">📊 Quality Metrics</h3>
+                    <!-- Quality filters -->
+                </div>
+                <div>
+                    <h3 style="margin-bottom: var(--space-3);">🎯 Content Focus</h3>
+                    <!-- Content filters -->
+                </div>
+            </div>
+            
+            <footer style="margin-top: var(--space-6); display: flex; gap: var(--space-3); justify-content: flex-end;">
+                <button class="btn btn-secondary" @click="showFilters = false">Cancel</button>
+                <button class="btn btn-primary">Apply Advanced Filters</button>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Alpine.js Application Logic
+        function spinorApp() {
+            return {
+                // State management
+                messages: [],
+                currentMessage: '',
+                isTyping: false,
+                showFilters: false,
+                isRefreshing: false,
+                socket: null,
+                
+                // System status
+                systemStatus: {
+                    connected: false,
+                    autoFeeding: false,
+                    vectorDb: false,
+                    nodeCount: 0,
+                    feeding: false
+                },
+                
+                // Statistics
+                stats: {
+                    totalNodes: 0,
+                    totalPapers: 0,
+                    avgCitations: 0,
+                    redundancyRatio: 0
+                },
+                
+                // Filters
+                filters: {
+                    source: '',
+                    category: '',
+                    minCitations: '',
+                    dateRange: ''
+                },
+                
+                activeFilters: [],
+                
+                quickFilters: [
+                    { id: 'high-impact', label: '🔥 High Impact' },
+                    { id: 'recent', label: '🆕 Recent' },
+                    { id: 'trending', label: '📈 Trending' },
+                    { id: 'ml-ai', label: '🤖 ML/AI' },
+                    { id: 'risk-mgmt', label: '⚠️ Risk Mgmt' },
+                    { id: 'trading', label: '💹 Trading' }
+                ],
+                
+                recentPapers: [],
+                
+                // Initialization
+                init() {
+                    this.initializeSocket();
+                    this.loadInitialData();
+                    this.startStatusUpdates();
+                },
+                
+                // Socket.IO connection
+                initializeSocket() {
+                    this.socket = io();
+                    
+                    this.socket.on('connect', () => {
+                        console.log('✅ Connected to SPINOR AI');
+                        this.systemStatus.connected = true;
+                    });
+                    
+                    this.socket.on('disconnect', () => {
+                        console.log('❌ Disconnected from SPINOR AI');
+                        this.systemStatus.connected = false;
+                    });
+                    
+                    this.socket.on('ai_response', (data) => {
+                        this.isTyping = false;
+                        this.addMessage('ai', data.response);
+                        this.scrollToBottom();
+                    });
+                    
+                    this.socket.on('progress', (data) => {
+                        // Handle progress updates
+                        console.log('Progress:', data);
+                    });
+                    
+                    this.socket.on('system_update', (data) => {
+                        this.updateSystemStatus(data);
+                    });
+                },
+                
+                // Load initial data
+                async loadInitialData() {
+                    await Promise.all([
+                        this.refreshStats(),
+                        this.loadRecentPapers(),
+                        this.checkSystemStatus()
+                    ]);
+                },
+                
+                // Message handling
+                addMessage(type, content) {
+                    const message = {
+                        id: Date.now() + Math.random(),
+                        type: type,
+                        content: content,
+                        timestamp: new Date()
+                    };
+                    this.messages.push(message);
+                },
+                
+                sendMessage() {
+                    if (!this.currentMessage.trim() || this.isTyping) return;
+                    
+                    const message = this.currentMessage.trim();
+                    this.addMessage('user', message);
+                    this.currentMessage = '';
+                    this.isTyping = true;
+                    
+                    // Apply filters to the query if any
+                    const query = {
+                        message: message,
+                        filters: this.getActiveFilters()
+                    };
+                    
+                    this.socket.emit('user_message', query);
+                    this.scrollToBottom();
+                },
+                
+                clearChat() {
+                    this.messages = [];
+                },
+                
+                formatMessage(content) {
+                    // Convert markdown to HTML using marked.js
+                    return marked.parse(content);
+                },
+                
+                scrollToBottom() {
+                    this.$nextTick(() => {
+                        const container = this.$refs.messagesContainer;
+                        container.scrollTop = container.scrollHeight;
+                    });
+                },
+                
+                // Statistics and data loading
+                async refreshStats() {
+                    this.isRefreshing = true;
+                    try {
+                        const response = await fetch('/api/stats');
+                        if (response.ok) {
+                            this.stats = await response.json();
+                        }
+                    } catch (error) {
+                        console.error('Error loading stats:', error);
+                    } finally {
+                        this.isRefreshing = false;
+                    }
+                },
+                
+                async loadRecentPapers() {
+                    try {
+                        const response = await fetch('/api/recent_papers');
+                        if (response.ok) {
+                            this.recentPapers = await response.json();
+                        }
+                    } catch (error) {
+                        console.error('Error loading recent papers:', error);
+                    }
+                },
+                
+                async checkSystemStatus() {
+                    try {
+                        const response = await fetch('/api/system_status');
+                        if (response.ok) {
+                            const status = await response.json();
+                            this.updateSystemStatus(status);
+                        }
+                    } catch (error) {
+                        console.error('Error checking system status:', error);
+                    }
+                },
+                
+                updateSystemStatus(status) {
+                    Object.assign(this.systemStatus, status);
+                },
+                
+                startStatusUpdates() {
+                    // Poll for updates every 30 seconds
+                    setInterval(() => {
+                        if (this.systemStatus.connected) {
+                            this.checkSystemStatus();
+                        }
+                    }, 30000);
+                },
+                
+                // Filter management
+                getActiveFilters() {
+                    const filters = {};
+                    
+                    if (this.filters.source) filters.source = this.filters.source;
+                    if (this.filters.category) filters.category = this.filters.category;
+                    if (this.filters.minCitations) filters.minCitations = parseInt(this.filters.minCitations);
+                    if (this.filters.dateRange) filters.dateRange = parseInt(this.filters.dateRange);
+                    if (this.activeFilters.length > 0) filters.quickFilters = this.activeFilters;
+                    
+                    return filters;
+                },
+                
+                toggleQuickFilter(filterId) {
+                    const index = this.activeFilters.indexOf(filterId);
+                    if (index > -1) {
+                        this.activeFilters.splice(index, 1);
+                    } else {
+                        this.activeFilters.push(filterId);
+                    }
+                },
+                
+                applyFilters() {
+                    const filters = this.getActiveFilters();
+                    // Emit filters to backend
+                    this.socket.emit('apply_filters', filters);
+                    // Reload data with filters
+                    this.loadRecentPapers();
+                },
+                
+                // Paper interaction
+                selectPaper(paper) {
+                    const query = `Tell me more about "${paper.title}" and its relevance to quantitative finance.`;
+                    this.currentMessage = query;
+                    this.sendMessage();
+                },
+                
+                async loadMorePapers() {
+                    // Load more papers with current filters
+                    try {
+                        const response = await fetch('/api/more_papers', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(this.getActiveFilters())
+                        });
+                        if (response.ok) {
+                            const newPapers = await response.json();
+                            this.recentPapers.push(...newPapers);
+                        }
+                    } catch (error) {
+                        console.error('Error loading more papers:', error);
+                    }
+                },
+                
+                // System controls
+                async triggerAutoFeeding() {
+                    try {
+                        const response = await fetch('/api/trigger_feeding', { method: 'POST' });
+                        if (response.ok) {
+                            this.systemStatus.feeding = true;
+                            setTimeout(() => {
+                                this.systemStatus.feeding = false;
+                                this.refreshStats();
+                                this.loadRecentPapers();
+                            }, 10000); // Simulate feeding duration
+                        }
+                    } catch (error) {
+                        console.error('Error triggering auto-feeding:', error);
+                    }
+                },
+                
+                async cleanupNodes() {
+                    try {
+                        const response = await fetch('/api/cleanup_nodes', { method: 'POST' });
+                        if (response.ok) {
+                            const result = await response.json();
+                            this.addMessage('ai', `🧹 Cleanup completed! Removed ${result.removed} redundant nodes.`);
+                            this.refreshStats();
+                        }
+                    } catch (error) {
+                        console.error('Error cleaning up nodes:', error);
+                    }
+                },
+                
+                async exportData() {
+                    try {
+                        const response = await fetch('/api/export_knowledge_base');
+                        if (response.ok) {
+                            const blob = await response.blob();
+                            const url = window.URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = `spinor_knowledge_base_${new Date().toISOString().split('T')[0]}.json`;
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                            window.URL.revokeObjectURL(url);
+                        }
+                    } catch (error) {
+                        console.error('Error exporting data:', error);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
