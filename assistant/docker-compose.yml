@@ -1,16 +1,79 @@
 
 services:
-  quant-ai:
+  # CLI Interactive Mode (Default)
+  quant-ai-cli:
     build: .
-    container_name: quant-ai-assistant
+    container_name: quant-ai-cli
     volumes:
       - ./knowledge_base:/app/knowledge_base
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./config:/app/config
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - quant-net
+    command: ["cli"]
+    stdin_open: true
+    tty: true
+
+  # GUI Mode (requires X11)
+  quant-ai-gui:
+    build: .
+    container_name: quant-ai-gui
+    volumes:
+      - ./knowledge_base:/app/knowledge_base
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./config:/app/config
       - /tmp/.X11-unix:/tmp/.X11-unix  # X11 socket for Linux GUI
     environment:
       - DISPLAY=${DISPLAY}
       - QT_X11_NO_MITSHM=1
+      - PYTHONUNBUFFERED=1
     networks:
       - quant-net
+    command: ["gui"]
+    profiles:
+      - gui
+
+  # Full System Mode
+  quant-ai-full:
+    build: .
+    container_name: quant-ai-full
+    volumes:
+      - ./knowledge_base:/app/knowledge_base
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./config:/app/config
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - quant-net
+    command: ["full-system"]
+    stdin_open: true
+    tty: true
+    profiles:
+      - full
+
+  # Automatic Paper Service (Background)
+  quant-ai-papers:
+    build: .
+    container_name: quant-ai-papers
+    volumes:
+      - ./knowledge_base:/app/knowledge_base
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./config:/app/config
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - quant-net
+    command: ["auto-service"]
+    restart: unless-stopped
+    profiles:
+      - papers
+      - auto
 
 networks:
   quant-net:
