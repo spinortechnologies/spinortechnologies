@@ -1,0 +1,86 @@
+# Requisitos del Sistema para el Asistente de Finanzas Cuantitativas
+# Quantitative Finance Assistant System Requirements
+
+# Dependencias principales / Main dependencies
+langchain==0.1.0
+transformers==4.36.0
+torch>=2.0.0
+sentence-transformers==2.2.2
+faiss-cpu==1.7.4
+PyQt5==5.15.10
+numpy>=1.21.0
+pandas>=1.3.0
+scipy>=1.7.0
+matplotlib>=3.4.0
+plotly>=5.0.0
+seaborn>=0.11.0
+
+# Dependencias para extracción de texto / Text extraction dependencies
+PyPDF2==3.0.1
+pdfplumber==0.10.0
+requests>=2.25.0
+beautifulsoup4>=4.9.0
+lxml>=4.6.0
+
+# Dependencias para el sistema de actualización automática / Auto-update system dependencies
+schedule==1.2.0
+psutil>=5.8.0
+python-dateutil>=2.8.0
+
+# Dependencias para análisis financiero / Financial analysis dependencies
+yfinance>=0.2.0
+pandas-datareader>=0.10.0
+quantlib>=1.30  # Para modelos de pricing avanzados / For advanced pricing models
+alpha-vantage>=2.3.0  # API de datos financieros / Financial data API
+
+# Dependencias para machine learning / Machine learning dependencies
+scikit-learn>=1.0.0
+xgboost>=1.7.0
+lightgbm>=3.3.0
+
+# Dependencias para gráficos y visualización / Plotting and visualization dependencies
+dash>=2.14.0
+dash-bootstrap-components>=1.5.0
+kaleido>=0.2.1  # Para exportar gráficos de Plotly / For Plotly graph export
+
+# Dependencias para bases de datos vectoriales / Vector database dependencies
+chromadb>=0.4.0
+pinecone-client>=2.2.0  # Opcional / Optional
+
+# Dependencias para procesamiento de lenguaje natural / NLP dependencies
+spacy>=3.4.0
+nltk>=3.8.0
+gensim>=4.3.0
+
+# Dependencias para desarrollo y testing / Development and testing dependencies
+pytest>=7.0.0
+pytest-qt>=4.2.0
+black>=22.0.0
+flake8>=5.0.0
+mypy>=1.0.0
+
+# Dependencias para Jupyter / Jupyter dependencies
+jupyter>=1.0.0
+ipykernel>=6.0.0
+ipywidgets>=8.0.0
+
+# Dependencias de configuración / Configuration dependencies
+python-dotenv>=1.0.0
+pyyaml>=6.0
+configparser>=5.3.0
+
+# Dependencias para el servidor web / Web server dependencies
+flask>=2.3.0
+gunicorn>=21.0.0  # Para deployment en producción / For production deployment
+
+# Dependencias específicas para mercados españoles / Spanish markets specific dependencies
+investpy>=1.0.8  # Datos de mercados europeos / European markets data
+python-binance>=1.0.16  # Para criptomonedas / For cryptocurrencies
+
+# Notas de instalación / Installation notes:
+# 1. Para GPU: Reemplazar torch con torch+cu118 o torch+cu121 según tu versión de CUDA
+#    For GPU: Replace torch with torch+cu118 or torch+cu121 depending on your CUDA version
+# 2. Para M1/M2 Mac: Usar conda para instalar faiss-cpu
+#    For M1/M2 Mac: Use conda to install faiss-cpu
+# 3. En Windows: Puede requerir Microsoft Visual C++ Build Tools
+#    On Windows: May require Microsoft Visual C++ Build Tools
