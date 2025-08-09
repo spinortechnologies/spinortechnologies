@@ -1,0 +1,109 @@
+2025-08-10 00:17:04,002 - __main__ - ERROR - ❌ Failed to get data for AAPL: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:04,004 - __main__ - ERROR - ❌ Failed to get data for AMZN: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:04,004 - __main__ - WARNING - Attempt 1 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 1.0s
+2025-08-10 00:17:04,005 - __main__ - WARNING - Attempt 1 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 1.0s
+2025-08-10 00:17:04,006 - __main__ - ERROR - ❌ Failed to get data for NFLX: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:04,007 - __main__ - ERROR - ❌ Failed to get data for GOOGL: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:04,007 - __main__ - ERROR - ❌ Failed to get data for META: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:04,008 - __main__ - WARNING - Attempt 1 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 1.0s
+2025-08-10 00:17:04,009 - __main__ - WARNING - Attempt 1 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 1.0s
+2025-08-10 00:17:04,009 - __main__ - WARNING - Attempt 1 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 1.0s
+2025-08-10 00:17:05,006 - __main__ - ERROR - ❌ Failed to get data for AAPL: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:05,008 - __main__ - ERROR - ❌ Failed to get data for AMZN: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:05,008 - __main__ - WARNING - Attempt 2 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 2.0s
+2025-08-10 00:17:05,009 - __main__ - WARNING - Attempt 2 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 2.0s
+2025-08-10 00:17:05,010 - __main__ - ERROR - ❌ Failed to get data for NFLX: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:05,011 - __main__ - ERROR - ❌ Failed to get data for META: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:05,011 - __main__ - ERROR - ❌ Failed to get data for GOOGL: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:05,012 - __main__ - WARNING - Attempt 2 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 2.0s
+2025-08-10 00:17:05,013 - __main__ - WARNING - Attempt 2 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 2.0s
+2025-08-10 00:17:05,014 - __main__ - WARNING - Attempt 2 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 2.0s
+2025-08-10 00:17:07,010 - __main__ - ERROR - ❌ Failed to get data for AAPL: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:07,012 - __main__ - ERROR - ❌ Failed to get data for AMZN: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:07,013 - __main__ - ERROR - All 3 attempts failed
+2025-08-10 00:17:07,014 - __main__ - ERROR - All 3 attempts failed
+2025-08-10 00:17:07,016 - __main__ - ERROR - ❌ Failed to get data for NFLX: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:07,016 - __main__ - ERROR - ❌ Failed to get data for GOOGL: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:07,016 - __main__ - WARNING - Failed to fetch AAPL: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:07,016 - __main__ - ERROR - ❌ Failed to get data for META: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:07,018 - __main__ - WARNING - Failed to fetch AMZN: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:07,019 - __main__ - ERROR - All 3 attempts failed
+2025-08-10 00:17:07,020 - __main__ - ERROR - All 3 attempts failed
+2025-08-10 00:17:07,021 - __main__ - ERROR - All 3 attempts failed
+2025-08-10 00:17:07,023 - __main__ - WARNING - Failed to fetch NFLX: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:07,023 - __main__ - WARNING - Failed to fetch GOOGL: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:07,024 - __main__ - WARNING - Failed to fetch META: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:07,027 - __main__ - WARNING - Failed to fetch data for: ['AAPL', 'AMZN', 'NFLX', 'GOOGL', 'META']
+2025-08-10 00:17:07,027 - __main__ - INFO - ✅ Successfully fetched data for 0/5 symbols
+2025-08-10 00:17:07,028 - __main__ - INFO - Performance: get_multiple_symbols - 3.026s - 0 records
+2025-08-10 00:17:07,028 - __main__ - ERROR - ❌ Failed to get company info for AAPL: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:07,139 - __main__ - ERROR - ❌ Failed to get data for SPY: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:07,139 - __main__ - ERROR - ❌ Failed to get data for QQQ: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:07,140 - __main__ - ERROR - ❌ Failed to get data for IWM: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:07,140 - __main__ - WARNING - Attempt 1 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 1.0s
+2025-08-10 00:17:07,141 - __main__ - ERROR - ❌ Failed to get data for VTI: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:07,142 - __main__ - WARNING - Attempt 1 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 1.0s
+2025-08-10 00:17:07,143 - __main__ - WARNING - Attempt 1 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 1.0s
+2025-08-10 00:17:07,144 - __main__ - WARNING - Attempt 1 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 1.0s
+2025-08-10 00:17:08,685 - __main__ - ERROR - ❌ Failed to get data for SPY: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:08,686 - __main__ - WARNING - Attempt 2 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 2.0s
+2025-08-10 00:17:08,686 - __main__ - ERROR - ❌ Failed to get data for VTI: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:08,686 - __main__ - ERROR - ❌ Failed to get data for IWM: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:08,688 - __main__ - ERROR - ❌ Failed to get data for QQQ: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:08,689 - __main__ - WARNING - Attempt 2 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 2.0s
+2025-08-10 00:17:08,690 - __main__ - WARNING - Attempt 2 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 2.0s
+2025-08-10 00:17:08,691 - __main__ - WARNING - Attempt 2 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 2.0s
+2025-08-10 00:17:10,688 - __main__ - ERROR - ❌ Failed to get data for SPY: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:10,689 - __main__ - ERROR - All 3 attempts failed
+2025-08-10 00:17:10,689 - __main__ - WARNING - Failed to fetch SPY: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:10,692 - __main__ - ERROR - ❌ Failed to get data for VTI: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:10,693 - __main__ - ERROR - ❌ Failed to get data for IWM: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:10,693 - __main__ - ERROR - ❌ Failed to get data for QQQ: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:10,693 - __main__ - ERROR - All 3 attempts failed
+2025-08-10 00:17:10,694 - __main__ - ERROR - All 3 attempts failed
+2025-08-10 00:17:10,694 - __main__ - ERROR - All 3 attempts failed
+2025-08-10 00:17:10,695 - __main__ - WARNING - Failed to fetch VTI: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:10,695 - __main__ - WARNING - Failed to fetch IWM: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:10,697 - __main__ - WARNING - Failed to fetch QQQ: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:17:10,699 - __main__ - WARNING - Failed to fetch data for: ['SPY', 'VTI', 'IWM', 'QQQ']
+2025-08-10 00:17:10,699 - __main__ - INFO - ✅ Successfully fetched data for 0/4 symbols
+2025-08-10 00:17:10,700 - __main__ - INFO - Performance: get_multiple_symbols - 3.671s - 0 records
+2025-08-10 00:20:03,081 - __main__ - ERROR - ❌ Failed to get data for AAPL: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:03,082 - __main__ - ERROR - ❌ Failed to get data for GOOGL: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:03,082 - __main__ - WARNING - Attempt 1 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 1.0s
+2025-08-10 00:20:03,083 - __main__ - ERROR - ❌ Failed to get data for MSFT: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:03,083 - __main__ - ERROR - ❌ Failed to get data for SPY: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:03,084 - __main__ - WARNING - Attempt 1 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 1.0s
+2025-08-10 00:20:03,084 - __main__ - ERROR - ❌ Failed to get data for QQQ: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:03,086 - __main__ - WARNING - Attempt 1 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 1.0s
+2025-08-10 00:20:03,087 - __main__ - WARNING - Attempt 1 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 1.0s
+2025-08-10 00:20:03,089 - __main__ - WARNING - Attempt 1 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 1.0s
+2025-08-10 00:20:04,085 - __main__ - ERROR - ❌ Failed to get data for AAPL: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:04,086 - __main__ - WARNING - Attempt 2 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 2.0s
+2025-08-10 00:20:04,088 - __main__ - ERROR - ❌ Failed to get data for GOOGL: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:04,088 - __main__ - WARNING - Attempt 2 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 2.0s
+2025-08-10 00:20:04,090 - __main__ - ERROR - ❌ Failed to get data for MSFT: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:04,090 - __main__ - WARNING - Attempt 2 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 2.0s
+2025-08-10 00:20:04,091 - __main__ - ERROR - ❌ Failed to get data for SPY: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:04,091 - __main__ - ERROR - ❌ Failed to get data for QQQ: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:04,093 - __main__ - WARNING - Attempt 2 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 2.0s
+2025-08-10 00:20:04,093 - __main__ - WARNING - Attempt 2 failed: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.. Retrying in 2.0s
+2025-08-10 00:20:06,087 - __main__ - ERROR - ❌ Failed to get data for AAPL: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:06,090 - __main__ - ERROR - ❌ Failed to get data for GOOGL: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:06,091 - __main__ - ERROR - All 3 attempts failed
+2025-08-10 00:20:06,092 - __main__ - ERROR - ❌ Failed to get data for MSFT: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:06,094 - __main__ - ERROR - All 3 attempts failed
+2025-08-10 00:20:06,095 - __main__ - ERROR - ❌ Failed to get data for SPY: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:06,096 - __main__ - WARNING - Failed to fetch AAPL: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:06,096 - __main__ - ERROR - ❌ Failed to get data for QQQ: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:06,097 - __main__ - ERROR - All 3 attempts failed
+2025-08-10 00:20:06,098 - __main__ - WARNING - Failed to fetch GOOGL: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:06,100 - __main__ - ERROR - All 3 attempts failed
+2025-08-10 00:20:06,101 - __main__ - ERROR - All 3 attempts failed
+2025-08-10 00:20:06,102 - __main__ - WARNING - Failed to fetch MSFT: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:06,103 - __main__ - WARNING - Failed to fetch SPY: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:06,103 - __main__ - WARNING - Failed to fetch QQQ: Yahoo API requires curl_cffi session not <class 'requests.sessions.Session'>. Solution: stop setting session, let YF handle.
+2025-08-10 00:20:06,106 - __main__ - WARNING - Failed to fetch data for: ['AAPL', 'GOOGL', 'MSFT', 'SPY', 'QQQ']
+2025-08-10 00:20:06,106 - __main__ - INFO - ✅ Successfully fetched data for 0/5 symbols
+2025-08-10 00:20:06,107 - __main__ - INFO - Performance: get_multiple_symbols - 3.026s - 0 records
+2025-08-10 00:20:06,107 - __main__ - ERROR - Workflow demonstration failed: division by zero
