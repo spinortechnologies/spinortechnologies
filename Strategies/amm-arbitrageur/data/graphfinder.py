@@ -1,218 +1,4 @@
-import requests
-import pandas as pd
-from datetime import datetime, timezone
-
-# ------------------- Configuración -------------------
-API_KEY = "5416676bb1355388c99743344da1b45a"
-SUBGRAPH_ID = "A3Np3RQbaBA6oKJgiwDJeo5T3zrYfGHPWFYayMwtNDum"  # PancakeSwap V2
-URL = f"https://gateway.thegraph.com/api/subgraphs/id/{SUBGRAPH_ID}"
-HEADERS = {"Content-Type": "application/json", "Authorization": f"Bearer {API_KEY}"}
-
-BATCH_SIZE = 1000
-MAX_PAIRS = 50
-MAX_PAIRS_DAYDATA = 100
-MAX_SWAPS = 100
-
-# ------------------- Funciones -------------------
-
-def fetch_top_pairs_by_liquidity_and_volume(top_n=MAX_PAIRS):
-    pairs = []
-    skip = 0
-    while True:
-        query = f"""
-        {{
-            pairs(first: {BATCH_SIZE}, skip: {skip}, orderBy: reserveUSD, orderDirection: desc) {{
-                id
-                token0 {{ id symbol name decimals tradeVolumeUSD }}
-                token1 {{ id symbol name decimals tradeVolumeUSD }}
-                reserve0
-                reserve1
-                reserveUSD
-                volumeUSD
-            }}
-        }}
-        """
-        resp = requests.post(URL, headers=HEADERS, json={"query": query}).json()
-        if "data" not in resp or resp["data"] is None:
-            break
-        data = resp["data"]["pairs"]
-        if not data:
-            break
-
-        for p in data:
-            token0_vol = float(p["token0"].get("tradeVolumeUSD", 0))
-            token1_vol = float(p["token1"].get("tradeVolumeUSD", 0))
-            if token0_vol > 10000 or token1_vol > 10000:
-                pairs.append(p)
-                if len(pairs) >= top_n:
-                    return pairs
-        skip += BATCH_SIZE
-    return pairs
-
-# ------------------- Datos diarios -------------------
-def fetch_pair_day_data(pair_map):
-    all_day_data = []
-    pair_ids = list(pair_map.keys())[:MAX_PAIRS_DAYDATA]
-
-    for pid in pair_ids:
-        query = f"""
-        {{
-            pairDayDatas(first: 1, where: {{pairAddress: "{pid}"}}, orderBy: date, orderDirection: desc) {{
-                dailyTxns
-                dailyVolumeToken0
-                dailyVolumeToken1
-                dailyVolumeUSD
-                date
-                id
-                pairAddress
-                reserve0
-                reserve1
-                reserveUSD
-                totalSupply
-            }}
-        }}
-        """
-        resp = requests.post(URL, headers=HEADERS, json={"query": query}).json()
-        if not resp or "data" not in resp or resp["data"] is None:
-            print(f"⚠️ No data para pair {pid}: {resp}")
-            continue
-
-        d_list = resp["data"].get("pairDayDatas")
-        if not d_list:
-            print(f"⚠️ pairDayData vacío para pair {pid}")
-            continue
-        d = d_list[0]
-
-        token0 = pair_map[pid]["token0"]
-        token1 = pair_map[pid]["token1"]
-
-        price0_1 = float(d["reserve1"]) / float(d["reserve0"]) if float(d["reserve0"])>0 else None
-        price1_0 = float(d["reserve0"]) / float(d["reserve1"]) if float(d["reserve1"])>0 else None
-
-        all_day_data.append({
-            "pair_id": pid,
-            "date": datetime.utcfromtimestamp(int(d["date"])).strftime("%Y-%m-%d"),
-            "token0": token0,
-            "token1": token1,
-            "reserve0": float(d["reserve0"]),
-            "reserve1": float(d["reserve1"]),
-            "reserveUSD": float(d["reserveUSD"]),
-            "dailyVolumeToken0": float(d["dailyVolumeToken0"]),
-            "dailyVolumeToken1": float(d["dailyVolumeToken1"]),
-            "dailyVolumeUSD": float(d["dailyVolumeUSD"]),
-            "dailyTxns": int(d["dailyTxns"]),
-            "totalSupply": float(d["totalSupply"]),
-            "price_token0_token1": price0_1,
-            "price_token1_token0": price1_0
-        })
-        print(f"✅ Datos diarios descargados para pair {pid}")
-    return all_day_data
-
-# ------------------- Swaps -------------------
-def fetch_pair_swaps(pair_ids):
-    all_swaps = []
-    now_ts = int(datetime.now(timezone.utc).timestamp())
-    one_hour_ago = now_ts - 3600
-
-    for pid in pair_ids[:MAX_PAIRS_DAYDATA]:
-        skip = 0
-        swaps_list = []
-        while True:
-            query = f"""
-            {{
-                swaps(first: {BATCH_SIZE}, skip: {skip}, orderBy: timestamp, orderDirection: desc, where: {{pair: "{pid}"}}) {{
-                    id
-                    amount0In
-                    amount1In
-                    amount0Out
-                    amount1Out
-                    amountUSD
-                    timestamp
-                }}
-            }}
-            """
-            resp = requests.post(URL, headers=HEADERS, json={"query": query}).json()
-            swaps = resp.get("data", {}).get("swaps")
-            if not swaps or len(swaps_list) >= MAX_SWAPS:
-                break
-            for s in swaps[:MAX_SWAPS - len(swaps_list)]:
-                amount0 = float(s["amount0In"]) + float(s["amount0Out"])
-                amount1 = float(s["amount1In"]) + float(s["amount1Out"])
-                price = amount1 / amount0 if amount0 > 0 else None
-                swaps_list.append({"timestamp": int(s["timestamp"]), "price": price})
-            skip += BATCH_SIZE
-
-        num_swaps_hour = sum(1 for s in swaps_list if s["timestamp"] >= one_hour_ago)
-        avg_price = sum(s["price"] for s in swaps_list if s["price"] is not None)/num_swaps_hour if num_swaps_hour>0 else None
-
-        all_swaps.append({
-            "pair_id": pid,
-            "num_swaps_last_hour": num_swaps_hour,
-            "avg_swap_price": avg_price
-        })
-        print(f"✅ Datos d descargados para pair ")
-    return all_swaps
-
-# ------------------- Liquidez -------------------
-def fetch_pair_liquidity(pair_ids):
-    all_liq = []
-    for pid in pair_ids[:MAX_PAIRS_DAYDATA]:
-        query_mint = f"""{{ mints(first: {MAX_SWAPS}, where: {{pair: "{pid}"}}) {{ amountUSD }} }}"""
-        resp_mint = requests.post(URL, headers=HEADERS, json={"query": query_mint}).json()
-        mints_sum = sum(float(m["amountUSD"]) for m in resp_mint.get("data", {}).get("mints", []) if m["amountUSD"] not in (None, ""))
-
-        query_burn = f"""{{ burns(first: {MAX_SWAPS}, where: {{pair: "{pid}"}}) {{ amountUSD }} }}"""
-        resp_burn = requests.post(URL, headers=HEADERS, json={"query": query_burn}).json()
-        burns_sum = sum(float(b["amountUSD"]) for b in resp_burn.get("data", {}).get("burns", []) if b["amountUSD"] not in (None, ""))
-
-        all_liq.append({
-            "pair_id": pid,
-            "liquidity_added_removed": mints_sum - burns_sum
-        })
-    return all_liq
-
-# ------------------- Script principal -------------------
-if __name__ == "__main__":
-    print("📥 Descargando pares filtrados por liquidez y volumen...")
-    all_pairs = fetch_top_pairs_by_liquidity_and_volume(top_n=MAX_PAIRS)
-    pair_map = {p["id"]: {"token0": p["token0"]["symbol"], "token1": p["token1"]["symbol"]} for p in all_pairs}
-    print(pair_map)
-
-    print("📥 Descargando datos diarios de pares...")
-    daily_data = fetch_pair_day_data(pair_map)
-
-    print("📥 Descargando swaps...")
-    swaps_data = fetch_pair_swaps(list(pair_map.keys()))
-
-    print("📥 Descargando liquidez mints/burns...")
-    liq_data = fetch_pair_liquidity(list(pair_map.keys()))
-
-    # Convertimos a DataFrame
-    df_daily = pd.DataFrame(daily_data)
-    df_swaps = pd.DataFrame(swaps_data)
-    df_liq = pd.DataFrame(liq_data)
-    df_pairs = pd.DataFrame([{
-        "pair_id": p["id"],
-        "token0": p["token0"]["symbol"],
-        "token1": p["token1"]["symbol"],
-        "reserve0": float(p["reserve0"]),
-        "reserve1": float(p["reserve1"]),
-        "reserveUSD": float(p["reserveUSD"]),
-        "volumeUSD": float(p["volumeUSD"]),
-        "price_token0_token1": float(p["reserve1"])/float(p["reserve0"]) if float(p["reserve0"])>0 else None,
-        "price_token1_token0": float(p["reserve0"])/float(p["reserve1"]) if float(p["reserve1"])>0 else None
-    } for p in all_pairs])
-
-    # Guardar CSV
-    df_pairs.to_csv("pairs.csv", index=False)
-    df_daily.to_csv("pair_day_data.csv", index=False)
-    df_swaps.to_csv("pair_swaps.csv", index=False)
-    df_liq.to_csv("pair_liquidity.csv", index=False)
-
-    print("💾 CSV generados correctamente.")
-
 """
-
 Detectar ciclos de arbitraje + optimizar tamaño de operación (x) para cada ciclo.
 
 Entrada esperada:
@@ -232,7 +18,7 @@ pools = [
   {"pair_id":"0xB", "token0":"USDC","token1":"ABC","reserve0":50000.0,"reserve1":1000000.0},
   ...
 ]
-
+"""
 
 from math import isclose
 from decimal import Decimal, getcontext
@@ -247,7 +33,7 @@ FEE_DEFAULT = 0.003  # 0.3%
 # ------------------ utilidades AMM UniswapV2 ------------------
 
 def get_amount_out(amount_in: Decimal, reserve_in: Decimal, reserve_out: Decimal, fee: float = FEE_DEFAULT) -> Decimal:
-    Uniswap V2 getAmountOut using Decimal for precision.
+    """Uniswap V2 getAmountOut using Decimal for precision."""
     if amount_in <= 0 or reserve_in <= 0 or reserve_out <= 0:
         return Decimal(0)
     fee_multiplier = Decimal(1) - Decimal(str(fee))
@@ -259,9 +45,10 @@ def get_amount_out(amount_in: Decimal, reserve_in: Decimal, reserve_out: Decimal
 # ------------------ construir grafo ------------------
 
 def build_graph_from_pools(pools: List[Dict]) -> Dict[str, List[Dict]]:
-
+    """
     Construye un grafo dirigido: graph[token] = list of edges
-
+    edge = { "to": token_to, "pair_id":..., "reserve_in":..., "reserve_out":..., "fee":... , "token_in": token_from, "token_out": token_to }
+    """
     graph = {}
     for p in pools:
         t0 = p["token0"]
@@ -295,10 +82,11 @@ def build_graph_from_pools(pools: List[Dict]) -> Dict[str, List[Dict]]:
 # ------------------ búsqueda de ciclos simples (DFS limitado) ------------------
 
 def find_simple_cycles(graph: Dict[str, List[Dict]], max_len: int = 4) -> List[List[Dict]]:
-
+    """
     Encuentra ciclos simples hasta longitud max_len.
     Devuelve lista de ciclos; cada ciclo es lista de edges (en orden).
     Nota: esto puede ser costoso si hay muchos nodos; max_len pequeño (3 o 4) es práctico.
+    """
     cycles = []
     nodes = list(graph.keys())
 
@@ -342,10 +130,11 @@ def find_simple_cycles(graph: Dict[str, List[Dict]], max_len: int = 4) -> List[L
 # ------------------ simular ciclo y función de profit ------------------
 
 def simulate_cycle_final_amount(cycle: List[Dict], amount_in: Decimal) -> Decimal:
-
+    """
     Simula swaps sucesivos siguiendo los edges de 'cycle'.
     amount_in = cantidad inicial del token_in del primer edge.
     Devuelve la cantidad final (del mismo token de inicio) después de aplicar los swaps del ciclo.
+    """
     amt = Decimal(amount_in)
     # Para cada edge, aplicamos get_amount_out con las reservas actuales.
     # Importante: usamos reservas estáticas (reserva actual), NO actualizamos reservas como si ejecutáramos la operación
@@ -370,20 +159,20 @@ def simulate_cycle_final_amount(cycle: List[Dict], amount_in: Decimal) -> Decima
     return amt
 
 def profit_for_cycle(cycle: List[Dict], x: Decimal) -> Decimal:
-
+    """
     profit = final_amount - x, as Decimal
-
+    """
     final = simulate_cycle_final_amount(cycle, x)
     return final - Decimal(x)
 
 # ------------------ optimización unidimensional (golden-section) ------------------
 
 def maximize_profit_for_cycle(cycle: List[Dict], x_min: Decimal = Decimal('1e-12'), x_max: Decimal = None, tol: float = 1e-6, max_iter=80) -> Tuple[Decimal, Decimal]:
-
+    """
     Busca x que maximice profit_for_cycle dentro de [x_min, x_max].
     Si x_max is None, lo estimamos como fracción de la mínima reserva de entrada en el ciclo.
     Devuelve (x_best, profit_best)
-
+    """
     # determinar token inicial y reservas límites
     # tomamos reserva_in del primer edge
     first_res_in = Decimal(cycle[0]["reserve_in"])
@@ -431,11 +220,12 @@ def maximize_profit_for_cycle(cycle: List[Dict], x_min: Decimal = Decimal('1e-12
 # ------------------ pipeline principal ------------------
 
 def find_and_optimize_cycles(pools: List[Dict], max_cycle_len: int = 3, min_profit_threshold: float = 1e-8):
- 
+    """
     1) Construir grafo
     2) Encontrar ciclos simples hasta max_cycle_len
     3) Optimizar x para cada ciclo
     4) Retornar ciclos con profit > min_profit_threshold (en unidades del token inicial, típicamente base token)
+    """
     graph = build_graph_from_pools(pools)
     cycles = find_simple_cycles(graph, max_len=max_cycle_len)
     print(f"[INFO] ciclos candidatos encontrados: {len(cycles)} (filtrados por longitud <= {max_cycle_len})")
@@ -484,7 +274,7 @@ import math
 # 1. Construir el grafo
 # ==============================
 def build_graph(pairs):
-
+    """
     Construye grafo dirigido a partir de lista de pares.
     pairs: lista de dicts con estructura:
         {
@@ -494,6 +284,7 @@ def build_graph(pairs):
           "reserve0": float,
           "reserve1": float
         }
+    """
     G = nx.DiGraph()
     for p in pairs:
         t0, t1 = p["token0"], p["token1"]
@@ -511,9 +302,9 @@ def build_graph(pairs):
 # 2. Enumerar ciclos
 # ==============================
 def find_cycles(G, max_length=4):
-
+    """
     Encuentra ciclos simples hasta max_length
-
+    """
     all_cycles = []
     for cycle in nx.simple_cycles(G):
         if 2 <= len(cycle) <= max_length:
@@ -524,10 +315,10 @@ def find_cycles(G, max_length=4):
 # 3. Calcular beneficio esperado
 # ==============================
 def simulate_cycle(G, cycle, amount_in=1.0):
-
+    """
     Simula pasar 'amount_in' tokens a través de un ciclo.
     Usa la fórmula de AMM constante: out = (amount_in * reserve_out) / (reserve_in + amount_in)
- 
+    """
     amount = amount_in
     for i in range(len(cycle)):
         u = cycle[i]
@@ -558,5 +349,3 @@ print("🔄 Ciclos encontrados:")
 for c in cycles:
     profit = simulate_cycle(G, c, amount_in=1000)
     print(c, f"Beneficio estimado: {profit:.4f}")
-
-"""
