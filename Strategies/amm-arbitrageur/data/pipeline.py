@@ -5,6 +5,8 @@ import networkx as nx
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
 
 getcontext().prec = 60  # precisión alta
 
@@ -142,6 +144,20 @@ print("✅ Features de ciclos generadas y guardadas.")
 # ---------------------- ML: RandomForest ----------------------
 X = df_cycles.drop(columns=["profit","cycle_tokens"])
 y = df_cycles["profit"]
+
+#PCA
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+n = 5 # Needs testing
+
+pca = PCA(n_components=n)
+X_pca = pca.fit_transform(X_scaled)
+
+df_pca = pd.DataFrame(X_pca, columns=[f"PC{i+1}" for i in range(X_pca.shape[1])])
+
+X_extended = pd.concat([X.reset_index(drop=True), df_pca], axis=1)
+
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
