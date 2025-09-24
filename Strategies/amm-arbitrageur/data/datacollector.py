@@ -1,6 +1,7 @@
 import requests
 import pandas as pd
 from datetime import datetime, timezone
+import time
 
 # ------------------- Configuración -------------------
 API_KEY = "5416676bb1355388c99743344da1b45a"
@@ -8,12 +9,11 @@ SUBGRAPH_ID = "A3Np3RQbaBA6oKJgiwDJeo5T3zrYfGHPWFYayMwtNDum"  # PancakeSwap V2
 URL = f"https://gateway.thegraph.com/api/subgraphs/id/{SUBGRAPH_ID}"
 HEADERS = {"Content-Type": "application/json", "Authorization": f"Bearer {API_KEY}"}
 
-BATCH_SIZE = 1000
-MAX_PAIRS = 50
-MAX_PAIRS_DAYDATA = 100
-MAX_SWAPS = 100
-
-# ------------------- Funciones -------------------
+BATCH_SIZE = 200  # aumentado para traer más resultados por llamada
+MAX_PAIRS = 200  # por ejemplo
+MAX_PAIRS_DAYDATA = 200
+MAX_SWAPS = 200
+SLEEP_BETWEEN_CALLS = 0.5  # segundos de espera entre peticiones
 
 def fetch_top_pairs_by_liquidity_and_volume(top_n=MAX_PAIRS):
     pairs = []
@@ -33,6 +33,8 @@ def fetch_top_pairs_by_liquidity_and_volume(top_n=MAX_PAIRS):
         }}
         """
         resp = requests.post(URL, headers=HEADERS, json={"query": query}).json()
+        time.sleep(SLEEP_BETWEEN_CALLS)  # <-- espera para no saturar la API
+
         if "data" not in resp or resp["data"] is None:
             break
         data = resp["data"]["pairs"]
@@ -73,6 +75,7 @@ def fetch_pair_day_data(pair_map):
         }}
         """
         resp = requests.post(URL, headers=HEADERS, json={"query": query}).json()
+        time.sleep(SLEEP_BETWEEN_CALLS)
         if not resp or "data" not in resp or resp["data"] is None:
             print(f"⚠️ No data para pair {pid}: {resp}")
             continue
@@ -132,6 +135,7 @@ def fetch_pair_swaps(pair_ids):
             }}
             """
             resp = requests.post(URL, headers=HEADERS, json={"query": query}).json()
+            time.sleep(SLEEP_BETWEEN_CALLS)
             swaps = resp.get("data", {}).get("swaps")
             if not swaps or len(swaps_list) >= MAX_SWAPS:
                 break
@@ -153,6 +157,8 @@ def fetch_pair_swaps(pair_ids):
         print(f"✅ Datos d descargados para pair ")
     return all_swaps
 
+
+
 # ------------------- Liquidez -------------------
 def fetch_pair_liquidity(pair_ids):
     all_liq = []
@@ -163,6 +169,7 @@ def fetch_pair_liquidity(pair_ids):
 
         query_burn = f"""{{ burns(first: {MAX_SWAPS}, where: {{pair: "{pid}"}}) {{ amountUSD }} }}"""
         resp_burn = requests.post(URL, headers=HEADERS, json={"query": query_burn}).json()
+        time.sleep(SLEEP_BETWEEN_CALLS)
         burns_sum = sum(float(b["amountUSD"]) for b in resp_burn.get("data", {}).get("burns", []) if b["amountUSD"] not in (None, ""))
 
         all_liq.append({
@@ -560,3 +567,4 @@ for c in cycles:
     print(c, f"Beneficio estimado: {profit:.4f}")
 
 """
+

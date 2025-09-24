@@ -116,8 +116,12 @@ def extract_cycle_features(cycle, G, df_pairs, df_daily, df_swaps, df_liq):
         
         # swaps
         swaps_row = df_swaps[df_swaps["pair_id"]==pair_id]
-        avg_swaps.append(swaps_row["avg_swap_price"].values[0] if not swaps_row.empty else 0)
-        num_swaps.append(swaps_row["num_swaps_last_hour"].values[0] if not swaps_row.empty else 0)
+        avg_val = swaps_row["avg_swap_price"].values[0] if not swaps_row.empty else 0
+        num_val = swaps_row["num_swaps_last_hour"].values[0] if not swaps_row.empty else 0
+        
+        # reemplazar NaN por 0
+        avg_swaps.append(0 if pd.isna(avg_val) else avg_val)
+        num_swaps.append(0 if pd.isna(num_val) else num_val)
     
     features["reserve_min"] = min(reserves) if reserves else 0
     features["reserve_max"] = max(reserves) if reserves else 0
@@ -142,12 +146,15 @@ df_cycles.to_csv("cycles_features.csv", index=False)
 print("✅ Features de ciclos generadas y guardadas.")
 
 # ---------------------- ML: RandomForest ----------------------
+df_cycles = df_cycles[~df_cycles["cycle_tokens"].str.contains("unknown", na=False)]
 X = df_cycles.drop(columns=["profit","cycle_tokens"])
 y = df_cycles["profit"]
 
 #PCA
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
+
+print(X_scaled)
 
 n = 5 # Needs testing
 
@@ -161,7 +168,17 @@ X_extended = pd.concat([X.reset_index(drop=True), df_pca], axis=1)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-model = RandomForestRegressor(n_estimators=100, random_state=42)
+model = RandomForestRegressor(
+    n_estimators=500,
+    max_depth=10,
+    min_samples_split=5,
+    min_samples_leaf=2,
+    max_features="sqrt",
+    bootstrap=True,
+    n_jobs=-1,
+    random_state=42
+)
+
 model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 
