@@ -1,2 +1,7 @@
 .env
-*.csv
+*.csvassistant/Miniconda3-latest-Linux-x86_64.sh
+assistant/Miniconda3-latest-Linux-x86_64.sh
+*.sh
+Strategies/Arbitrage/amm-arbitrageur/ML_Pipeline/Data/
+Utilitites/quotes.csv
+assistant/Miniconda3-latest-Linux-x86_64.sh
